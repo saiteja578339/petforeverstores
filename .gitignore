@@ -1,0 +1,19 @@
+# Python virtual environments and generated files
+backend/.venv/
+backend/venv/
+backend/__pycache__/
+__pycache__/
+*.py[cod]
+
+# Local database, uploaded pet photos, and runtime data
+backend/data/
+*.sqlite3
+*.db
+
+# Local secrets and editor/OS files
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+.vscode/

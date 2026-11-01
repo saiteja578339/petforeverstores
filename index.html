@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Fur-Ever | Find a Companion</title>
+    <meta name="description" content="Browse pet listings with clear ages, sex, breed details, food notes, and dog care cost estimates.">
+    <meta property="og:title" content="Pet Fur-Ever | Find a Companion">
+    <meta property="og:description" content="Browse pet listings with clear ages, sex, breed details, food notes, and dog care cost estimates.">
+    <meta property="og:image" content="pet-fur-ever-logo.svg">
+    <link rel="icon" type="image/svg+xml" href="pet-fur-ever-logo.svg">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Comfortaa:wght@500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#ff6b6b',
+                            dark: '#ee5253',
+                            light: '#ff9ff3',
+                            accent: '#ffd23f',
+                            teal: '#1dd1a1',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        fun: ['Comfortaa', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* CSS Animations for Animals & AI */
+        @keyframes bounce-animal {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-12px) scale(0.95); }
+        }
+        @keyframes tail-wag {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(15deg); }
+        }
+        @keyframes ear-twitch {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(-5deg); }
+        }
+        @keyframes play-kitten {
+            0%, 100% { transform: rotate(0deg) translateY(0); }
+            50% { transform: rotate(3deg) translateY(-4px); }
+        }
+        @keyframes float-paws {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.1; }
+            50% { opacity: 0.4; }
+            100% { transform: translateY(-80px) rotate(25deg); opacity: 0; }
+        }
+        @keyframes heart-beat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+        @keyframes ai-pulse {
+            0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+        }
+
+        .animate-bounce-animal { animation: bounce-animal 2s infinite ease-in-out; }
+        .animate-tail-wag { animation: tail-wag 0.4s infinite ease-in-out; transform-origin: bottom right; }
+        .animate-ear-twitch { animation: ear-twitch 1.2s infinite ease-in-out; }
+        .animate-play-kitten { animation: play-kitten 1.5s infinite ease-in-out; }
+        .animate-heart-beat { animation: heart-beat 1.2s infinite ease-in-out; }
+        .animate-ai-pulse { animation: ai-pulse 2s infinite; }
+
+        .paw-particle {
+            position: absolute;
+            color: rgba(255, 107, 107, 0.15);
+            pointer-events: none;
+            animation: float-paws 6s infinite linear;
+        }
+
+        .tilt-card {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+        }
+        .tilt-card:hover {
+            box-shadow: 0 25px 50px -12px rgba(255, 107, 107, 0.25);
+        }
+
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #ff6b6b; border-radius: 4px; }
+
+        .mag-button { transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .mag-button:hover { transform: scale(1.05); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased relative">
+
+    <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="paw-particle text-3xl" style="top: 15%; left: 8%; animation-delay: 0s;"><i class="fa-solid fa-paw"></i></div>
+        <div class="paw-particle text-2xl" style="top: 40%; right: 5%; animation-delay: 2s;"><i class="fa-solid fa-paw"></i></div>
+        <div class="paw-particle text-4xl" style="top: 65%; left: 12%; animation-delay: 4s;"><i class="fa-solid fa-paw"></i></div>
+        <div class="paw-particle text-3xl" style="bottom: 10%; right: 15%; animation-delay: 1s;"><i class="fa-solid fa-paw"></i></div>
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/919177578339?text=Hi,%20I%2520am%2520interested%2520in%2520Pet%2520Fur-Ever!" 
+       class="fixed bottom-6 right-6 w-16 h-16 bg-[#25d366] text-white rounded-full shadow-2xl flex items-center justify-center text-3xl z-40 hover:scale-110 transition duration-300 animate-heart-beat hover:shadow-emerald-400/50" 
+       target="_blank" 
+       title="WhatsApp Chat">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Top Promo Bar -->
+    <div class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white text-xs sm:text-sm py-2.5 px-4 text-center font-bold relative z-10">
+        🐾 Find a companion, compare care needs, and explore safe listings. 🐾
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-45 bg-white/95 backdrop-blur-md shadow-md border-b border-indigo-100/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3 group">
+                <a href="#top" aria-label="Pet Fur-Ever home"><img src="pet-fur-ever-logo.svg" alt="Pet Fur-Ever logo" class="w-12 h-12 object-contain bg-white rounded-full p-1 shadow-sm group-hover:rotate-12 transition duration-300"></a>
+                <div>
+                    <span class="text-2xl font-black bg-gradient-to-r from-brand to-orange-500 bg-clip-text text-transparent font-fun">Pet Fur-Ever</span>
+                    <span class="block text-[10px] text-indigo-500 font-bold tracking-widest uppercase">Companion Marketplace</span>
+                </div>
+            </div>
+
+            <nav class="hidden lg:flex items-center space-x-7 font-semibold text-slate-600">
+                <a href="#pets" class="hover:text-brand transition flex items-center gap-1"><i class="fa-solid fa-shop text-brand/70 text-xs"></i> Buy / Adopt</a>
+                <a href="#matchmaker" class="hover:text-indigo-500 transition flex items-center gap-1"><i class="fa-solid fa-wand-magic-sparkles text-indigo-500 text-xs"></i> Find a Match</a>
+                <a href="#readiness" class="hover:text-indigo-500 transition flex items-center gap-1"><i class="fa-solid fa-heart-circle-check text-indigo-500 text-xs"></i> Readiness Lab</a>
+                <a href="#marketplace-tools" class="hover:text-indigo-500 transition flex items-center gap-1"><i class="fa-solid fa-sparkles text-indigo-500 text-xs"></i> Marketplace Tools</a>
+                <button onclick="openModal('donateModal')" class="hover:text-rose-500 transition flex items-center gap-1"><i class="fa-solid fa-hand-holding-heart text-rose-500/70 text-xs"></i> Donate</button>
+            </nav>
+
+            <div class="flex items-center space-x-3">
+                <button onclick="openCompareModal()" class="relative p-2.5 rounded-full bg-indigo-50 hover:bg-indigo-100 text-indigo-600 transition" title="Compare pets">
+                    <i class="fa-solid fa-code-compare text-lg"></i>
+                    <span id="compareCount" class="absolute -top-1 -right-1 bg-indigo-600 text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
+                </button>
+                <button onclick="toggleWishlistDrawer()" class="relative p-2.5 rounded-full bg-rose-50 hover:bg-rose-100 text-brand transition" title="My Wishlist">
+                    <i class="fa-solid fa-heart text-xl"></i>
+                    <span id="wishlistCount" class="absolute -top-1 -right-1 bg-brand text-white text-xs w-5.5 h-5.5 rounded-full flex items-center justify-center font-bold animate-pulse">0</span>
+                </button>
+                <button onclick="openModal('sellModal')" class="bg-gradient-to-r from-brand to-orange-500 hover:from-brand-dark hover:to-orange-600 text-white font-bold px-4 py-2.5 rounded-2xl shadow-lg shadow-brand/35 transition duration-300 flex items-center gap-2 text-sm mag-button">
+                    <i class="fa-solid fa-tags"></i>
+                    <span class="hidden sm:inline">Sell / Rehome</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="top" class="relative overflow-hidden bg-gradient-to-b from-indigo-50/70 via-white to-slate-50 py-16 lg:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 bg-indigo-100 border border-indigo-200 text-indigo-700 px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold tracking-wide">
+                    <i class="fa-solid fa-paw"></i> Photo Search • Care Guides • Pet Listings
+                </div>
+                <h1 class="text-4xl sm:text-6xl font-extrabold text-slate-900 leading-tight">
+                    Find Your Perfect <br>
+                    <span class="bg-gradient-to-r from-brand via-indigo-500 to-pink-500 bg-clip-text text-transparent font-fun">Fur-ever Companion</span>
+                </h1>
+                <p class="text-slate-600 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-medium">
+                    Find a companion with image search, listing safety previews, demand signals, personalized recommendations, and transparent trust scores.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                    <a href="#pets" class="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-white font-bold px-8 py-4 rounded-2xl shadow-xl transition-all text-center flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-shop"></i> Browse Pets
+                    </a>
+                    <button onclick="openModal('matchmakerModal')" class="w-full sm:w-auto bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold px-8 py-4 rounded-2xl border border-indigo-200 shadow-sm transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Try Smart Recommendations
+                    </button>
+                </div>
+            </div>
+            <!-- Interactive Illustrated Image Collage -->
+            <div class="lg:col-span-5 relative">
+                <div class="relative mx-auto max-w-md lg:max-w-none">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-brand via-indigo-400 to-pink-400 rounded-3xl blur-xl opacity-35 animate-pulse"></div>
+                    <div class="relative bg-white p-4 rounded-3xl shadow-2xl border border-slate-100 flex flex-col items-center">
+                        <div class="relative overflow-hidden rounded-2xl w-full">
+                            <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=80" alt="Joyful Pets" class="w-full h-80 object-cover">
+                            <!-- Overlay Animals Visual Graphic -->
+                            <div class="absolute top-4 left-4 bg-white/95 backdrop-blur px-3 py-1.5 rounded-full text-xs font-bold text-slate-800 flex items-center gap-1.5 border border-indigo-100 shadow">
+                                <i class="fa-solid fa-shield-check text-emerald-500"></i> Sample Listing
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Pets Explorer -->
+    <section id="pets" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            <div>
+                <h2 class="text-3xl font-extrabold text-slate-900 font-fun">Buy / Adopt Companions</h2>
+                <p class="text-slate-500 font-medium">Listings show safety and trust previews. A live Scikit-learn detection service can be connected for production scoring.</p>
+            </div>
+            <!-- Category Selection tabs -->
+            <div class="flex flex-wrap gap-2 bg-indigo-50/50 border border-indigo-100 p-1.5 rounded-2xl" id="categoryTabs">
+                <button onclick="filterCategory('all')" class="cat-btn px-5 py-2.5 rounded-xl text-sm font-bold bg-white text-indigo-600 shadow-sm transition duration-300">All</button>
+                <button onclick="filterCategory('puppy')" class="cat-btn px-5 py-2.5 rounded-xl text-sm font-bold text-slate-600 hover:text-indigo-600 transition">Puppies</button>
+                <button onclick="filterCategory('kitten')" class="cat-btn px-5 py-2.5 rounded-xl text-sm font-bold text-slate-600 hover:text-indigo-600 transition">Kittens</button>
+                <button onclick="filterCategory('rabbit')" class="cat-btn px-5 py-2.5 rounded-xl text-sm font-bold text-slate-600 hover:text-indigo-600 transition">Rabbits</button>
+                    <button onclick="filterCategory('bird')" class="cat-btn px-5 py-2.5 rounded-xl text-sm font-bold text-slate-600 hover:text-indigo-600 transition">Birds</button>
+            </div>
+        </div>
+
+        <div class="mb-6 flex flex-wrap items-center gap-2" aria-label="Filter pets by sex">
+            <span class="mr-1 text-xs font-bold uppercase tracking-wider text-slate-500">Pet sex</span>
+            <button onclick="filterSex('all')" data-sex="all" class="sex-btn rounded-full bg-indigo-600 px-4 py-2 text-xs font-bold text-white">All</button>
+            <button onclick="filterSex('female')" data-sex="female" class="sex-btn rounded-full bg-white px-4 py-2 text-xs font-bold text-slate-600 border border-slate-200 hover:border-indigo-300">Female</button>
+            <button onclick="filterSex('male')" data-sex="male" class="sex-btn rounded-full bg-white px-4 py-2 text-xs font-bold text-slate-600 border border-slate-200 hover:border-indigo-300">Male</button>
+        </div>
+
+    <!-- Photo search -->
+        <div class="mb-10 max-w-2xl relative group">
+            <div class="absolute -inset-1 bg-gradient-to-r from-indigo-300 to-pink-300 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-500"></div>
+            <div class="relative flex items-center bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden focus-within:ring-2 focus-within:ring-indigo-500">
+                <span class="pl-4 pr-2 text-slate-400"><i class="fa-solid fa-magnifying-glass"></i></span>
+                <input type="text" id="searchInput" oninput="searchPets()" placeholder="Search pet name, breed, food, or location..." class="w-full py-4 bg-transparent outline-none text-slate-700 font-medium">
+                <button onclick="triggerImageSearch()" class="px-5 py-4 text-indigo-600 hover:bg-indigo-50 font-bold transition flex items-center gap-2 border-l border-slate-100" title="CLIP / Computer Vision Search">
+                    <i class="fa-solid fa-camera animate-ai-pulse"></i> <span class="hidden sm:inline text-xs">Image Search</span>
+                </button>
+            </div>
+            <input type="file" id="searchImageInput" accept="image/*" class="hidden" onchange="previewSearchImage(this)">
+            <div id="imageSearchPanel" class="hidden relative mt-3 rounded-2xl border border-indigo-100 bg-white p-4 shadow-lg">
+                <div class="flex flex-col sm:flex-row items-center gap-4">
+                    <img id="searchImagePreview" alt="Image selected for visual search" class="hidden w-20 h-20 rounded-xl object-cover border border-slate-200">
+                    <div class="flex-1 text-center sm:text-left">
+                        <p class="font-bold text-slate-800 text-sm">Visual search image ready</p>
+                        <p id="imageSearchStatus" class="text-xs text-slate-500 mt-1">CLIP compares your photo with listing photos and returns close visual matches.</p>
+                    </div>
+                    <button id="runImageSearchButton" onclick="runImageSearch()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-xl text-sm transition">
+                        Find similar pets
+                    </button>
+                    <button onclick="clearImageSearch()" class="text-slate-400 hover:text-slate-700 p-2" aria-label="Clear image search"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <p class="text-[10px] text-slate-400 mt-3">Photo matching uses the optional Python CLIP model. Install backend/requirements-clip.txt and start the Python API.</p>
+            </div>
+        </div>
+
+        <!-- Cards Grid Area -->
+        <div id="petGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+    </section>
+
+    <!-- Smart recommendations -->
+    <section id="matchmaker" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="bg-gradient-to-br from-slate-900 to-indigo-950 rounded-3xl p-8 sm:p-12 text-white shadow-2xl relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-8">
+            <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-indigo-500/25 rounded-full blur-3xl pointer-events-none animate-pulse"></div>
+            <div class="space-y-4 max-w-xl z-10">
+                <span class="inline-flex items-center gap-1.5 bg-indigo-500/30 text-indigo-200 border border-indigo-500/50 px-3.5 py-1 rounded-full text-xs font-bold tracking-wider uppercase">
+                    <i class="fa-solid fa-network-wired"></i> Smart Recommendation Engine
+                </span>
+                <h3 class="text-3xl sm:text-4xl font-extrabold font-fun">Find a Companion That Fits Your Life</h3>
+                <p class="text-slate-300 font-medium">Try the interactive match quiz for a lifestyle-fit preview. A production Collaborative Filtering engine can personalize rankings using preference and adoption patterns as marketplace data grows.</p>
+            </div>
+            <div class="z-10">
+                <button onclick="openModal('matchmakerModal')" class="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-bold px-8 py-4.5 rounded-2xl shadow-xl transition-all flex items-center gap-3 mag-button border border-indigo-400">
+                    <i class="fa-solid fa-heart text-xl"></i> Get Recommendations
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Futuristic Adoption Readiness Lab -->
+    <section id="readiness" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div class="relative overflow-hidden rounded-[2rem] bg-slate-950 p-7 sm:p-10 lg:p-12 text-white shadow-2xl">
+            <div class="absolute -top-28 -right-16 h-80 w-80 rounded-full bg-indigo-500/25 blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-32 left-1/3 h-80 w-80 rounded-full bg-cyan-400/10 blur-3xl pointer-events-none"></div>
+            <div class="relative grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+                <div class="lg:col-span-5 space-y-5">
+                    <span class="inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.18em] text-cyan-200"><i class="fa-solid fa-satellite-dish"></i> Adoption Readiness Lab</span>
+                    <h2 class="text-3xl sm:text-4xl font-black leading-tight font-fun">A better first week starts <span class="text-cyan-300">before</span> the hello.</h2>
+                    <p class="text-sm leading-relaxed text-slate-300">Build a practical care plan around your home, schedule, budget, and support network. Your score is a planning guide, never an adoption approval decision.</p>
+                    <div class="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-4">
+                        <div class="relative flex h-20 w-20 shrink-0 items-center justify-center rounded-full border-4 border-cyan-300/30 bg-slate-900">
+                            <span id="readinessScore" class="text-2xl font-black text-cyan-200">—</span>
+                        </div>
+                        <div>
+                            <p id="readinessStatus" class="font-extrabold text-white">Your readiness snapshot</p>
+                            <p id="readinessHint" class="mt-1 text-xs text-slate-400">Answer a few questions to get your next steps.</p>
+                        </div>
+                    </div>
+                    <div id="readinessNextSteps" class="hidden space-y-2"></div>
+                </div>
+                <div class="lg:col-span-7 rounded-3xl border border-white/10 bg-white/[0.06] p-5 sm:p-7 backdrop-blur">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <label class="text-xs font-bold text-slate-200">Home type
+                            <select id="readinessHome" class="mt-1.5 w-full rounded-xl border border-white/10 bg-slate-900 px-3 py-3 text-sm text-white"><option value="apartment">Apartment</option><option value="house">House with outdoor space</option><option value="renter">Rented home</option></select>
+                        </label>
+                        <label class="text-xs font-bold text-slate-200">Daily time available
+                            <select id="readinessTime" class="mt-1.5 w-full rounded-xl border border-white/10 bg-slate-900 px-3 py-3 text-sm text-white"><option value="under_1">Under 1 hour</option><option value="1_2" selected>1–2 hours</option><option value="2_plus">2+ hours</option></select>
+                        </label>
+                        <label class="text-xs font-bold text-slate-200">Monthly care budget
+                            <select id="readinessBudget" class="mt-1.5 w-full rounded-xl border border-white/10 bg-slate-900 px-3 py-3 text-sm text-white"><option value="under_3000">Under ₹3,000</option><option value="3000_6000" selected>₹3,000–₹6,000</option><option value="over_6000">Over ₹6,000</option></select>
+                        </label>
+                        <div class="space-y-2.5 pt-1 text-xs text-slate-200">
+                            <label class="flex items-center gap-2"><input id="readinessHousehold" type="checkbox" class="accent-cyan-400"> Everyone at home is on board</label>
+                            <label class="flex items-center gap-2"><input id="readinessLandlord" type="checkbox" class="accent-cyan-400"> Rental approval is confirmed</label>
+                            <label class="flex items-center gap-2"><input id="readinessEmergency" type="checkbox" class="accent-cyan-400"> I have a plan for unexpected costs</label>
+                            <label class="flex items-center gap-2"><input id="readinessCaregiver" type="checkbox" class="accent-cyan-400"> A primary caregiver is agreed</label>
+                            <label class="flex items-center gap-2"><input id="readinessTravel" type="checkbox" class="accent-cyan-400"> I have backup care for travel</label>
+                        </div>
+                    </div>
+                    <button onclick="evaluateReadiness()" class="mt-6 w-full rounded-xl bg-gradient-to-r from-cyan-400 to-indigo-500 py-3.5 text-sm font-extrabold text-slate-950 shadow-lg shadow-cyan-500/20 transition hover:brightness-110"><i class="fa-solid fa-wand-magic-sparkles mr-2"></i>Generate my readiness plan</button>
+                    <p class="mt-3 text-center text-[10px] text-slate-400">Powered by the Python readiness API when connected; uses a local scoring fallback offline.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ML Technologies Highlight Section -->
+    <section id="marketplace-tools" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+            <span class="text-xs font-extrabold uppercase tracking-[0.2em] text-indigo-600">Marketplace Tools</span>
+            <h2 class="text-3xl font-extrabold text-slate-900 font-fun mt-2">Eight Smart Marketplace Features</h2>
+            <p class="text-slate-500 font-medium mt-2">Photo search, listing safety, care estimates, and planning tools for a thoughtful adoption journey.</p>
+            <p id="backendStatus" class="mt-3 inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1.5 text-[11px] font-bold text-slate-500"><span class="w-2 h-2 rounded-full bg-slate-400"></span> Checking Python API…</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-lg hover:shadow-xl transition-shadow flex items-start gap-4">
+                <div class="w-12 h-12 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-camera-viewfinder"></i></div>
+                <div>
+                    <h4 class="font-bold text-slate-800">Photo Search</h4>
+                    <p class="text-xs text-slate-500 mt-1"><strong>CLIP vision model.</strong> Compare an uploaded pet photo with the actual listing photos, then show only close visual matches.</p>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-lg hover:shadow-xl transition-shadow flex items-start gap-4">
+                <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-shield-halved"></i></div>
+                <div>
+                    <h4 class="font-bold text-slate-800">Fake Listing Detection</h4>
+                    <p class="text-xs text-slate-500 mt-1"><strong>Scikit-learn.</strong> Score listing risk from description, price, and photo signals before a listing is reviewed.</p>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-lg hover:shadow-xl transition-shadow flex items-start gap-4">
+                <div class="w-12 h-12 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-chart-line"></i></div>
+                <div>
+                    <h4 class="font-bold text-slate-800">Demand Forecasting</h4>
+                    <p class="text-xs text-slate-500 mt-1"><strong>Random Forest / XGBoost.</strong> Forecast seasonal interest by breed to help shelters plan care and outreach.</p>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-lg hover:shadow-xl transition-shadow flex items-start gap-4">
+                <div class="w-12 h-12 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-network-wired"></i></div>
+                <div>
+                    <h4 class="font-bold text-slate-800">Smart Recommendation Engine</h4>
+                    <p class="text-xs text-slate-500 mt-1"><strong>Collaborative Filtering.</strong> Recommend companions from adopter preferences and patterns from similar adopters.</p>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-lg hover:shadow-xl transition-shadow flex items-start gap-4">
+                <div class="w-12 h-12 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-user-check"></i></div>
+                <div>
+                    <h4 class="font-bold text-slate-800">Student Trust Score</h4>
+                    <p class="text-xs text-slate-500 mt-1"><strong>ML + Rule-Based Scoring.</strong> Combine verified student or seller details, listing quality, and account signals into a transparent 0–100 trust score.</p>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-lg hover:shadow-xl transition-shadow flex items-start gap-4">
+                <div class="w-12 h-12 rounded-full bg-cyan-100 text-cyan-700 flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-gauge-high"></i></div>
+                <div>
+                    <h4 class="font-bold text-slate-800">Adoption Readiness Lab</h4>
+                    <p class="text-xs text-slate-500 mt-1">A practical readiness score and next-step checklist for home, schedule, budget, and backup care.</p>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-lg hover:shadow-xl transition-shadow flex items-start gap-4">
+                <div class="w-12 h-12 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-calendar-week"></i></div>
+                <div>
+                    <h4 class="font-bold text-slate-800">7-Day Welcome Plan</h4>
+                    <p class="text-xs text-slate-500 mt-1">Build a gentle, category-aware first-week checklist for your new companion and household.</p>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-lg hover:shadow-xl transition-shadow flex items-start gap-4">
+                <div class="w-12 h-12 rounded-full bg-violet-100 text-violet-700 flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-code-compare"></i></div>
+                <div>
+                    <h4 class="font-bold text-slate-800">Pet Compare Studio</h4>
+                    <p class="text-xs text-slate-500 mt-1">Compare up to three listings side by side, including price, location, trust, and demand signals.</p>
+                </div>
+            </div>
+        </div>
+        <div class="mt-8 rounded-3xl border border-indigo-100 bg-gradient-to-r from-indigo-50 via-white to-violet-50 p-6 sm:p-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-5">
+                <div>
+                    <span class="text-xs font-extrabold uppercase tracking-wider text-indigo-600"><i class="fa-solid fa-chart-line mr-1"></i> Demand signal preview</span>
+                    <h3 class="text-xl font-extrabold text-slate-900 mt-1">What is trending in this sample catalog?</h3>
+                    <p class="text-xs text-slate-500 mt-1">A live inventory summary for this demo. Production forecasts need historical marketplace data and a trained Random Forest / XGBoost model.</p>
+                </div>
+                <div id="demandForecastSummary" class="grid grid-cols-2 sm:grid-cols-4 gap-3 md:min-w-[440px]"></div>
+            </div>
+                <div class="mt-6 grid grid-cols-1 md:grid-cols-[160px_1fr_auto] gap-3 items-end border-t border-indigo-100 pt-5">
+                    <label class="text-xs font-bold text-slate-700">Forecast category
+                        <select id="demandCategory" class="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm">
+                            <option value="puppy">Puppies</option><option value="kitten">Kittens</option><option value="rabbit">Rabbits</option><option value="bird">Birds</option>
+                        </select>
+                    </label>
+                    <label class="text-xs font-bold text-slate-700">Monthly demand history <span class="font-normal text-slate-500">(one YYYY-MM,count per line; 8+ months for Random Forest)</span>
+                        <textarea id="demandHistoryInput" rows="2" placeholder="2025-01,12&#10;2025-02,15&#10;…" class="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm font-normal"></textarea>
+                    </label>
+                    <button onclick="runDemandForecast()" class="rounded-xl bg-indigo-600 px-4 py-3 text-sm font-bold text-white hover:bg-indigo-700 transition">Forecast next 3 months</button>
+                </div>
+                <div id="demandForecastResult" class="hidden mt-3 rounded-2xl border border-indigo-100 bg-white p-4 text-sm" aria-live="polite"></div>
+        </div>
+    </section>
+
+    <!-- Footer Area -->
+    <footer class="bg-slate-900 text-slate-400 py-16 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div class="space-y-4">
+                <div class="flex items-center space-x-3">
+                    <img src="pet-fur-ever-logo.svg" alt="Pet Fur-Ever logo" class="w-12 h-12 object-contain bg-white rounded-full p-1 shadow-sm">
+                    <span class="text-2xl font-bold text-white font-fun">Pet Fur-Ever</span>
+                </div>
+                <p class="text-sm">Bringing warmth to homes with playful adoptable animals. Buy, Sell, and Donate with confidence!</p>
+            </div>
+            <div>
+                <h5 class="text-white font-bold mb-4 font-fun">Quick Actions</h5>
+                <ul class="space-y-2.5 text-sm">
+                    <li><a href="#pets" class="hover:text-white transition">Buy / Adopt a Pet</a></li>
+                    <li><button onclick="openModal('sellModal')" class="hover:text-white transition text-left">Sell / List a Pet</button></li>
+                    <li><button onclick="openModal('donateModal')" class="hover:text-rose-400 text-rose-500 transition text-left">Donate to Shelters</button></li>
+                    <li><a href="#matchmaker" class="hover:text-white transition">Lifestyle Match Quiz</a></li>
+                    <li><a href="#readiness" class="hover:text-cyan-300 transition">Adoption Readiness Lab</a></li>
+                    <li><button onclick="openCompareModal()" class="hover:text-white transition text-left">Pet Compare Studio</button></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-white font-bold mb-4 font-fun">Marketplace Tools</h5>
+                <ul class="space-y-2.5 text-sm">
+                    <li><span class="text-slate-500 block">Computer Vision</span></li>
+                    <li><span class="text-slate-500 block">Scikit-learn Detection</span></li>
+                    <li><span class="text-slate-500 block">XGBoost Forecasting</span></li>
+                    <li><span class="text-slate-500 block">Collaborative Filtering</span></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-white font-bold mb-4 font-fun">Contact Us</h5>
+                <p class="text-sm flex items-center gap-2"><i class="fa-solid fa-phone text-brand"></i> +91 91775 78339</p>
+                <p class="text-sm flex items-center gap-2 my-2.5"><i class="fa-solid fa-envelope text-brand"></i> support@petfurever.in</p>
+                <p class="text-sm flex items-center gap-2"><i class="fa-solid fa-map-location-dot text-brand"></i> Gachibowli, Hyderabad, India</p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-slate-800 text-center text-xs text-slate-500 font-medium">
+            &copy; 2026 Pet Fur-Ever. Created for Insta Biz Web Technical Round by Saiteja Itharaju. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Favorites Slide-Out Drawer -->
+    <div id="wishlistDrawer" class="fixed inset-y-0 right-0 z-50 w-full max-w-md bg-white shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
+        <div class="p-6 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+            <h3 class="font-extrabold text-lg text-slate-900 flex items-center gap-2 font-fun">
+                <i class="fa-solid fa-heart text-rose-500 animate-heart-beat"></i> Favourited Friends (<span id="drawerCount">0</span>)
+            </h3>
+            <button onclick="toggleWishlistDrawer()" class="w-9 h-9 rounded-full bg-slate-200 hover:bg-slate-300 flex items-center justify-center text-slate-700 transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div id="wishlistContainer" class="flex-1 overflow-y-auto p-6 space-y-4 divide-y divide-slate-100"></div>
+    </div>
+
+    <!-- Detail View Modal -->
+    <div id="detailsModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl relative my-8 animate-in fade-in zoom-in duration-200">
+            <button onclick="closeModal('detailsModal')" class="absolute top-4 right-4 z-10 w-10 h-10 bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center text-slate-700 hover:bg-white transition shadow">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- Pet Compare Studio -->
+    <div id="compareModal" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-md hidden items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-5xl w-full shadow-2xl relative p-6 sm:p-8 my-8">
+            <button onclick="closeModal('compareModal')" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-700"><i class="fa-solid fa-xmark"></i></button>
+            <span class="text-xs font-extrabold uppercase tracking-[0.2em] text-indigo-600">Pet Compare Studio</span>
+            <h3 class="text-2xl sm:text-3xl font-black text-slate-900 font-fun mt-1">Compare your shortlist</h3>
+            <p class="text-xs text-slate-500 mt-1">Select up to three companions to compare key details side by side.</p>
+            <div id="compareContent" class="mt-6 overflow-x-auto"></div>
+        </div>
+    </div>
+
+    <!-- 7-Day Welcome Plan Modal -->
+    <div id="welcomePlanModal" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-md hidden items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-2xl w-full shadow-2xl relative p-6 sm:p-8 my-8">
+            <button onclick="closeModal('welcomePlanModal')" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-700"><i class="fa-solid fa-xmark"></i></button>
+            <div id="welcomePlanContent"></div>
+        </div>
+    </div>
+
+    <!-- Donate Modal -->
+    <div id="donateModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-md w-full overflow-hidden shadow-2xl relative p-8 text-center">
+            <button onclick="closeModal('donateModal')" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-700 transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="w-16 h-16 bg-rose-100 text-rose-500 rounded-full flex items-center justify-center mx-auto text-3xl mb-4 animate-heart-beat">
+                <i class="fa-solid fa-hand-holding-heart"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-slate-900 font-fun">Support Our Shelters</h3>
+            <p class="text-sm text-slate-500 mt-2 mb-6">100% of your donation goes directly towards food, medical care, and housing for rescued animals.</p>
+            
+            <div class="grid grid-cols-3 gap-3 mb-4">
+                <button onclick="selectDonation(500, this)" class="donate-btn py-3 border-2 border-slate-200 rounded-xl font-bold text-slate-700 hover:border-brand transition">₹500</button>
+                <button onclick="selectDonation(1000, this)" class="donate-btn py-3 border-2 border-slate-200 rounded-xl font-bold text-slate-700 hover:border-brand transition">₹1000</button>
+                <button onclick="selectDonation(5000, this)" class="donate-btn py-3 border-2 border-slate-200 rounded-xl font-bold text-slate-700 hover:border-brand transition">₹5000</button>
+            </div>
+            <input type="number" id="customDonation" placeholder="Or enter custom amount..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-brand focus:outline-none mb-6 font-medium">
+            
+            <button onclick="processDonation()" class="w-full bg-gradient-to-r from-rose-500 to-pink-600 text-white font-extrabold py-3.5 rounded-xl shadow-lg transition duration-200">
+                Donate Now
+            </button>
+        </div>
+    </div>
+
+    <!-- Sell / Rehome Dashboard Modal -->
+    <div id="sellModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-xl w-full overflow-hidden shadow-2xl relative my-8 p-8">
+            <button onclick="cancelSell()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-700 transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="mb-6">
+                <span class="text-xs font-extrabold text-brand uppercase tracking-wider">Dashboard • Sell / Rehome</span>
+                <h3 class="text-2xl font-bold text-slate-900 mt-1 font-fun">List a Pet for Sale/Adoption</h3>
+                    <p class="text-xs text-slate-500 mt-1">Add clear details and photos. A browser-side safety preview flags listings for review; connect the Scikit-learn service for model scoring.</p>
+            </div>
+            <form id="sellForm" onsubmit="handleSellSubmission(event)" class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Companion Name</label>
+                        <input type="text" id="sellName" required placeholder="Max" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-brand focus:outline-none font-medium">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Animal Category</label>
+                        <select id="sellCategory" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-brand focus:outline-none font-medium">
+                            <option value="puppy">Puppy / Dog</option>
+                            <option value="kitten">Kitten / Cat</option>
+                            <option value="rabbit">Rabbit</option>
+                            <option value="bird">Exotic Bird</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Breed & Type</label>
+                        <input type="text" id="sellBreed" required placeholder="Shih Tzu / Mini Lop" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-brand focus:outline-none font-medium">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Age & Price</label>
+                        <div class="flex gap-2">
+                            <input type="text" id="sellAge" required placeholder="3 mos" class="w-1/2 px-3 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-brand focus:outline-none font-medium">
+                            <input type="text" id="sellPrice" required placeholder="₹12,000" class="w-1/2 px-3 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-brand focus:outline-none font-medium">
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <label class="block text-xs font-semibold text-slate-700">Pet sex
+                        <select id="sellSex" class="mt-1 w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-brand focus:outline-none font-medium"><option value="unknown">Not specified</option><option value="female">Female</option><option value="male">Male</option></select>
+                    </label>
+                    <label class="block text-xs font-semibold text-slate-700">Current food / feeding notes
+                        <input type="text" id="sellFood" maxlength="300" placeholder="Brand, food type, meal schedule" class="mt-1 w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-brand focus:outline-none font-medium">
+                    </label>
+                </div>
+                <label class="block text-xs font-semibold text-slate-700">Breed details and temperament
+                    <textarea id="sellBreedDetails" rows="2" maxlength="1000" placeholder="Size, energy level, grooming, temperament, and care needs" class="mt-1 w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-brand focus:outline-none font-medium"></textarea>
+                </label>
+
+                <div class="space-y-2 border border-dashed border-rose-200 p-4 rounded-2xl bg-rose-50/20">
+                    <label class="block text-xs font-bold text-brand uppercase tracking-wider mb-1"><i class="fa-solid fa-images mr-1"></i> Multi-Photo Gallery Collection</label>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <div class="w-full sm:w-1/2">
+                            <label class="block text-[10px] text-slate-500 font-bold mb-1">📷 Upload Main Image File</label>
+                            <input type="file" id="sellPhotoFile" onchange="previewUploadImage(this)" accept="image/*" class="w-full text-xs text-slate-500 file:mr-3 file:py-2 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-pink-100 file:text-brand hover:file:bg-pink-200 cursor-pointer">
+                        </div>
+                        <div class="w-full sm:w-1/2">
+                            <label class="block text-[10px] text-slate-500 font-bold mb-1">💡 Or Main URL Link</label>
+                            <input type="url" id="sellImgLink" placeholder="https://images.unsplash..." class="w-full px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs focus:outline-none">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold text-slate-500 mb-1"><i class="fa-solid fa-plus-circle"></i> Add Multiple Additional Image URL Links (Comma Separated)</label>
+                        <input type="text" id="sellImgExtra" placeholder="https://image-side.jpg, https://image-play.jpg" class="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-brand focus:outline-none font-medium">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Description</label>
+                    <textarea id="sellDesc" rows="2" required placeholder="Playful, fully vaccinated, dewormed, raised in active environment..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-brand focus:outline-none font-medium"></textarea>
+                </div>
+                <div id="listingRiskResult" class="hidden rounded-xl border p-3 text-xs" aria-live="polite"></div>
+                <button type="button" onclick="previewListingRisk()" class="text-xs font-bold text-indigo-700 hover:text-indigo-900"><i class="fa-solid fa-shield-halved mr-1"></i>Preview listing safety signals</button>
+                
+                <div class="flex gap-4 pt-2">
+                    <button type="button" onclick="cancelSell()" class="w-1/3 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold py-3.5 rounded-2xl transition duration-300">
+                        Cancel
+                    </button>
+                    <button type="submit" class="w-2/3 bg-gradient-to-r from-brand to-orange-500 hover:from-brand-dark hover:to-orange-600 text-white font-extrabold py-3.5 rounded-2xl shadow-lg transition duration-300">
+                        Check & Publish Listing
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Recommendation quiz -->
+    <div id="matchmakerModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl relative p-8">
+            <button onclick="closeModal('matchmakerModal')" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-700 transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="quizContainer">
+                <div class="text-center mb-6">
+                    <span class="bg-indigo-100 border border-indigo-200 text-indigo-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Lifestyle Recommendations</span>
+                    <h3 class="text-2xl font-bold text-slate-900 mt-2 font-fun">Find Your Perfect Match</h3>
+                    <p class="text-xs text-slate-500 mt-1">Answer 4 quick questions for a demo recommendation based on lifestyle fit.</p>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-800 mb-1">1. Home Environment</label>
+                        <select id="qSpace" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 font-semibold">
+                            <option value="apartment">Compact Apartment / Flat</option>
+                            <option value="house">Large House with Fenced Yard</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-800 mb-1">2. Daily Activity Level</label>
+                        <select id="qActivity" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 font-semibold">
+                            <option value="low">Relaxed (Low-energy play, short walks)</option>
+                            <option value="high">Highly Active (Long runs, hiking, sports)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-800 mb-1">3. Pet Ownership Experience</label>
+                        <select id="qExperience" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 font-semibold">
+                            <option value="first">First-time Owner (Need easy maintenance)</option>
+                            <option value="experienced">Experienced (Can handle training & specific needs)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-800 mb-1">4. Monthly Pet Budget</label>
+                        <select id="qBudget" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 font-semibold">
+                            <option value="low">Budget-Friendly (Under ₹3,000/mo)</option>
+                            <option value="high">Premium Budget (Over ₹5,000/mo)</option>
+                        </select>
+                    </div>
+                    <button onclick="runAIMatch()" class="w-full mt-4 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-extrabold py-3.5 rounded-xl shadow-lg transition duration-300">
+                        Ask for a match $\rightarrow$
+                    </button>
+                </div>
+            </div>
+            <div id="quizResultContainer" class="hidden text-center space-y-4">
+                <div class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto text-2xl animate-ai-pulse">
+                    <i class="fa-solid fa-microchip"></i>
+                </div>
+                <h4 class="text-2xl font-extrabold text-slate-900 font-fun">Your Best Match</h4>
+                <div id="matchResultCard" class="p-4 bg-slate-50 rounded-2xl border border-slate-100 text-left"></div>
+                <button onclick="closeModal('matchmakerModal')" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 rounded-xl">Awesome, Let's Check it out!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Status Modal (For Buy/Adopt) -->
+    <div id="statusModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-md w-full overflow-hidden shadow-2xl relative p-8 text-center">
+            <button onclick="closeModal('statusModal')" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-700 transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="w-16 h-16 bg-brand/10 text-brand rounded-full flex items-center justify-center mx-auto text-2xl mb-4 animate-bounce-animal">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-slate-900 font-fun">Buy / Adopt Request Sent!</h3>
+            <p class="text-xs text-slate-500 mt-1">The seller or shelter team has acknowledged your request.</p>
+            <div class="my-6 space-y-3.5 text-left bg-slate-50 p-5 rounded-2xl border border-rose-100">
+                <div class="flex items-center gap-3">
+                    <div class="w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs font-bold shadow">✓</div>
+                    <span class="text-sm font-bold text-slate-800">Request Submitted</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="w-6 h-6 rounded-full bg-brand text-white flex items-center justify-center text-xs animate-pulse font-extrabold">2</div>
+                    <span class="text-sm font-bold text-brand">Seller Reviewing Application</span>
+                </div>
+                <div class="flex items-center gap-3 text-slate-400 font-semibold">
+                    <div class="w-6 h-6 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-xs font-bold">3</div>
+                    <span class="text-sm">Payment & Handoff Arrangements</span>
+                </div>
+            </div>
+            <button onclick="closeModal('statusModal')" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-extrabold py-3.5 rounded-xl transition duration-200">
+                Got It
+            </button>
+        </div>
+    </div>
+
+    <!-- Scripting Backend Integration Core Controller -->
+    <script>
+        // Pre-uploaded file stringholder helper
+        let localUploadedImageBase64 = null;
+        let localUploadedImageFile = null;
+        const API_BASE_URL = window.PET_FUREVER_API || 'http://127.0.0.1:8000';
+
+        async function checkBackendStatus() {
+            const indicator = document.getElementById('backendStatus');
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/health`);
+                if (!response.ok) throw new Error('API unavailable');
+                const data = await response.json();
+                indicator.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-500"></span> Python API connected';
+                indicator.className = 'mt-3 inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1.5 text-[11px] font-bold text-emerald-700';
+                indicator.title = `Model status: ${Object.entries(data.models || {}).map(([name, status]) => `${name}: ${status}`).join(' | ')}`;
+            } catch (error) {
+                indicator.innerHTML = '<span class="w-2 h-2 rounded-full bg-slate-400"></span> Python API offline • browser demos active';
+                indicator.className = 'mt-3 inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1.5 text-[11px] font-bold text-slate-500';
+            }
+        }
+
+        // Expanded Base database objects with ML flags
+        let pets = [
+            {
+                id: 1,
+                name: "Bruno",
+                category: "puppy",
+                breed: "Golden Retriever",
+                age: "3 months",
+                sex: "male",
+                food: "Complete large-breed puppy food; ask the current caregiver for the brand, daily amount, and meal schedule.",
+                price: "₹15,000",
+                location: "Hyderabad",
+                desc: "A bright bouncing puppy with incredible intelligence and loyalty. Fully microchipped, vaccinated, and gets along well with other house pets.",
+                images: [
+                    "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&w=800&q=80"
+                ],
+                highDemand: true,
+                trustScore: 98
+            },
+            {
+                id: 2,
+                name: "Luna",
+                category: "kitten",
+                breed: "Persian Kitten",
+                age: "2.5 months",
+                sex: "female",
+                food: "Complete kitten food (wet, dry, or a vet-approved mix) with fresh water; confirm the current brand and portions.",
+                price: "₹12,000",
+                location: "Secunderabad",
+                desc: "Quiet, fluffy, litter-trained Persian kitten with a sweet temperament. Adorable green eyes, raised in a lively family home with kittens.",
+                images: [
+                    "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?auto=format&fit=crop&w=800&q=80"
+                ],
+                highDemand: false,
+                trustScore: 94
+            },
+            {
+                id: 3,
+                name: "Coco",
+                category: "rabbit",
+                breed: "Mini Lop Rabbit",
+                age: "4 months",
+                sex: "female",
+                food: "Unlimited grass hay, leafy greens, measured rabbit pellets, and fresh water; avoid sugary treats.",
+                price: "₹3,500",
+                location: "Madhapur",
+                desc: "Soft Mini Lop with fluffy flopped ears. Calm rabbit that loves nibbling fresh hay, celery, and interactive play.",
+                images: [
+                    "https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1535294435445-d7249524ef2e?auto=format&fit=crop&w=800&q=80"
+                ],
+                highDemand: false,
+                trustScore: 89
+            },
+            {
+                id: 4,
+                name: "Rio",
+                category: "bird",
+                breed: "Tame Cockatiel",
+                age: "6 months",
+                sex: "male",
+                food: "A quality cockatiel pellet base with washed vegetables and fresh water; keep seeds as limited treats.",
+                price: "₹4,500",
+                location: "Banjara Hills",
+                desc: "Social cockatiel trained to whistle custom tunes. Loves back petting, hand feeding, and being near family.",
+                images: [
+                    "https://images.unsplash.com/photo-1555169062-01347abf4bac?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1522858541604-e34988e0013b?auto=format&fit=crop&w=800&q=80"
+                ],
+                highDemand: true,
+                trustScore: 92
+            },
+            {
+                id: 5,
+                name: "Rocky",
+                category: "puppy",
+                breed: "Beagle Puppy",
+                age: "3.5 months",
+                sex: "male",
+                food: "Complete puppy food matched to his expected adult size; measure portions and ask the current caregiver for the brand.",
+                price: "₹14,000",
+                location: "Gachibowli",
+                desc: "Extremely active beagle puppy with beautiful tricolor marking. Full veterinary checking record and very affectionate.",
+                images: [
+                    "https://images.unsplash.com/photo-1505628346881-b72b27e84530?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=80"
+                ],
+                highDemand: true,
+                trustScore: 99
+            },
+            {
+                id: 6,
+                name: "Ghost",
+                category: "puppy",
+                breed: "Siberian Husky",
+                age: "4 months",
+                sex: "male",
+                food: "Complete large-breed puppy food with measured portions; confirm current food and growth plan with the caregiver and vet.",
+                price: "₹22,000",
+                location: "Banjara Hills",
+                desc: "Energetic and vocal husky puppy with striking blue eyes. Needs a highly active family with a yard.",
+                images: [
+                    "https://images.unsplash.com/photo-1605568427561-40dd23c2acea?auto=format&fit=crop&w=800&q=80", 
+                    "https://images.unsplash.com/photo-1541364983171-a8ba01e95cfc?auto=format&fit=crop&w=800&q=80"
+                ],
+                highDemand: false,
+                trustScore: 85
+            }
+        ];
+
+        let wishlist = [];
+        let compareList = [];
+        let currentFilter = 'all';
+        let currentSexFilter = 'all';
+        let visualSearchResults = null;
+        let visualSearchScores = {};
+        let selectedSearchImageDataUrl = null;
+        let selectedSearchImageFile = null;
+        let activeDetailsImages = [];
+
+        const breedCareGuides = [
+            {
+                matches: ['golden retriever'], sizeLabel: 'Large dog',
+                details: 'Usually friendly and people-focused. Golden Retrievers are active, trainable dogs with a dense shedding coat; plan for daily exercise, brushing, and reward-based training.',
+                food: 'Choose a complete and balanced large-breed puppy food while growing. Ask the caregiver for the exact brand, grams per day, and meal schedule, then change foods gradually with veterinary advice.',
+                monthly: { total: '₹7,000–₹15,000', food: '₹4,000–₹7,500', vet: '₹1,500–₹3,000', grooming: '₹1,500–₹4,500' }
+            },
+            {
+                matches: ['beagle'], sizeLabel: 'Medium dog',
+                details: 'A curious, sociable scent hound. Beagles benefit from daily sniff walks, secure outdoor spaces, and consistent training because interesting smells can distract them.',
+                food: 'Use complete puppy food appropriate for the expected adult size, measure meals, and keep treats in the daily calorie plan. Confirm portions and the current food with the caregiver and vet.',
+                monthly: { total: '₹5,000–₹9,000', food: '₹2,500–₹4,500', vet: '₹1,000–₹2,000', grooming: '₹1,500–₹2,500' }
+            },
+            {
+                matches: ['siberian husky', 'husky'], sizeLabel: 'Large dog',
+                details: 'An energetic northern working breed with a thick double coat. Huskies need substantial daily activity, brushing, secure fencing, and a cool, well-ventilated home in hot weather.',
+                food: 'Choose a complete and balanced large-breed puppy food and measure portions for healthy growth. Ask the caregiver for the exact brand and feeding schedule; your vet can adjust amounts for body condition and activity.',
+                monthly: { total: '₹7,000–₹15,000', food: '₹4,000–₹7,500', vet: '₹1,500–₹3,000', grooming: '₹1,500–₹4,500' }
+            },
+            {
+                matches: ['persian'], sizeLabel: 'Medium cat',
+                details: 'Persian cats are known for a long coat and a generally calm style. Plan on regular gentle brushing, a clean litter area, and routine eye and coat checks.',
+                food: 'Feed complete kitten food for growth and keep fresh water available. A Persian label is not a substitute for checking life stage, portions, and any veterinary needs.'
+            },
+            {
+                matches: ['mini lop', 'lop rabbit'], sizeLabel: 'Small rabbit',
+                details: 'Mini Lops are compact domestic rabbits with dropped ears. They need daily movement in a safe area, a roomy clean enclosure, gentle handling, and regular checks with a rabbit-experienced vet.',
+                food: 'Provide unlimited grass hay, suitable leafy greens, measured rabbit pellets, and fresh water. Ask a rabbit-experienced vet about portions and safe vegetables.'
+            },
+            {
+                matches: ['cockatiel'], sizeLabel: 'Small bird',
+                details: 'Cockatiels are social parrots that need daily interaction, enrichment, and safe supervised movement. Their environment should avoid fumes, smoke, and other airborne hazards.',
+                food: 'Use a species-appropriate balanced pellet as the base diet with suitable washed vegetables and fresh water. Ask an avian vet before changing food; avoid toxic foods such as avocado and chocolate.'
+            }
+        ];
+
+        const categoryFoodGuides = {
+            puppy: 'Feed a complete food labeled for the puppy life stage. Confirm the current brand and meal schedule, keep fresh water available, and ask a vet to set portions for age, weight, and growth.',
+            kitten: 'Feed complete kitten food suited to growth, keep fresh water available, and confirm the brand and portions with the caregiver. Ask a vet before changing diets.',
+            rabbit: 'Provide unlimited grass hay, suitable leafy greens, measured rabbit pellets, and fresh water. Ask a rabbit-experienced vet about portions and safe vegetables.',
+            bird: 'Use a species-appropriate balanced pellet as the base diet with suitable washed vegetables and fresh water. Ask an avian vet before changing food; avoid toxic foods such as avocado and chocolate.'
+        };
+
+        function getBreedCareGuide(pet) {
+            const breed = String(pet.breed || '').toLowerCase();
+            return breedCareGuides.find(guide => guide.matches.some(term => breed.includes(term))) || null;
+        }
+
+        function formatSex(sex) {
+            const value = String(sex || 'unknown').toLowerCase();
+            return value === 'female' ? 'Female' : value === 'male' ? 'Male' : 'Not specified';
+        }
+
+        function escapeHTML(value) {
+            return String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
+        }
+
+        function safeImageSource(value) {
+            const source = String(value || '');
+            return /^(https?:\/\/|data:image\/(png|jpe?g|webp|gif);base64,|blob:|\/media\/)/i.test(source) ? source : '';
+        }
+
+        function renderPets(petsToDisplay) {
+            const grid = document.getElementById('petGrid');
+            grid.innerHTML = '';
+
+            if (petsToDisplay.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-24 text-slate-400 font-bold"><i class="fa-solid fa-face-frown text-4xl mb-3 block"></i> No listings found. Try different filters or search!</div>`;
+                return;
+            }
+
+            petsToDisplay.forEach(pet => {
+                const isLiked = wishlist.includes(pet.id);
+                const isCompared = compareList.some(id => String(id) === String(pet.id));
+                const card = document.createElement('div');
+                const petIdArg = escapeHTML(JSON.stringify(pet.id));
+                const displayName = escapeHTML(pet.name);
+                const displayBreed = escapeHTML(pet.breed);
+                const displayAge = escapeHTML(pet.age);
+                const displaySex = escapeHTML(formatSex(pet.sex));
+                const displayFood = escapeHTML(pet.food || categoryFoodGuides[pet.category] || 'Ask the caregiver for current food details.');
+                const displayPrice = escapeHTML(pet.price);
+                const displayLocation = escapeHTML(pet.location);
+                const displayCategory = escapeHTML(pet.category).toUpperCase();
+                const displayImage = escapeHTML(safeImageSource(pet.images?.[0]) || 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=80');
+                const displayDescription = escapeHTML(pet.desc);
+                
+                let peekSprite = '';
+                if(pet.category === 'puppy') { peekSprite = `<span class="absolute -top-6 left-6 text-2xl z-10 animate-ear-twitch select-none">🐶</span>`; }
+                else if(pet.category === 'kitten') { peekSprite = `<span class="absolute -top-6 left-6 text-2xl z-10 animate-play-kitten select-none">🐱</span>`; }
+                else if(pet.category === 'rabbit') { peekSprite = `<span class="absolute -top-6 left-6 text-2xl z-10 animate-bounce-animal select-none">🐰</span>`; }
+                else { peekSprite = `<span class="absolute -top-6 left-6 text-2xl z-10 animate-ear-twitch select-none">🐦</span>`; }
+
+                // Listing safety and demand indicators for the demo catalog.
+                let badgesHTML = pet.requiresReview
+                    ? `<span class="inline-flex items-center gap-1 text-[9px] bg-amber-50 text-amber-700 px-2 py-0.5 rounded-md font-bold uppercase border border-amber-200" title="Flagged by the browser-side safety preview for manual review"><i class="fa-solid fa-triangle-exclamation"></i> Review</span>`
+                    : `<span class="inline-flex items-center gap-1 text-[9px] bg-emerald-50 text-emerald-600 px-2 py-0.5 rounded-md font-bold uppercase border border-emerald-200" title="Sample listing in the demo catalog; no live model service is connected"><i class="fa-solid fa-shield-check"></i> Demo Listing</span>`;
+                badgesHTML += `
+                    <span class="inline-flex items-center gap-1 text-[9px] bg-blue-50 text-blue-700 px-2 py-0.5 rounded-md font-bold uppercase border border-blue-200" title="Student and seller trust score preview, out of 100">
+                        <i class="fa-solid fa-user-check"></i> Trust ${Number(pet.trustScore || 0)}/100
+                    </span>
+                `;
+                if (visualSearchScores[pet.id] !== undefined) {
+                    badgesHTML += `<span class="inline-flex items-center gap-1 text-[9px] bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-md font-bold uppercase border border-indigo-200"><i class="fa-solid fa-image"></i> ${visualSearchScores[pet.id]}% visual match</span>`;
+                }
+                if(pet.highDemand) {
+                    badgesHTML += `
+                        <span class="inline-flex items-center gap-1 text-[9px] bg-orange-50 text-orange-600 px-2 py-0.5 rounded-md font-bold uppercase border border-orange-200" title="Sample demand signal; not a live forecast">
+                            <i class="fa-solid fa-fire"></i> Trending signal
+                        </span>
+                    `;
+                }
+
+                card.className = "bg-white rounded-3xl border border-rose-100 shadow-lg overflow-visible hover:shadow-2xl transition duration-300 flex flex-col justify-between tilt-card relative mt-4";
+                card.innerHTML = `
+                    ${peekSprite}
+                    <div class="relative overflow-hidden group h-60 rounded-t-3xl cursor-pointer" onclick="openDetailsModal(${petIdArg})">
+                        <img src="${displayImage}" alt="${displayName}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute top-4 left-4 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-brand shadow border border-rose-100">
+                            ${displayCategory}
+                        </div>
+                        <button onclick="event.stopPropagation(); toggleWishlist(${petIdArg})" class="absolute top-4 right-4 w-10 h-10 bg-white/95 backdrop-blur-md rounded-full flex items-center justify-center text-rose-500 hover:bg-white transition shadow border border-rose-50">
+                            <i class="${isLiked ? 'fa-solid' : 'fa-regular'} fa-heart text-lg"></i>
+                        </button>
+                        <div class="absolute bottom-4 left-4 bg-slate-900/75 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-white shadow-sm flex items-center gap-1.5">
+                            <i class="fa-solid fa-location-dot"></i> ${displayLocation}
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold text-slate-900 font-fun">${displayName}</h3>
+                                <span class="text-brand font-black text-lg">${displayPrice}</span>
+                            </div>
+                            <p class="text-xs font-bold text-slate-500 tracking-wide mb-2 flex items-center gap-1.5"><i class="fa-solid fa-paw text-brand/60"></i> ${displayBreed} • ${displayAge} • ${displaySex}</p>
+                            <p class="text-[11px] text-slate-500 line-clamp-1 mb-2"><i class="fa-solid fa-bowl-food mr-1 text-amber-500"></i>${displayFood}</p>
+                            ${pet.category === 'puppy' ? `<p class="text-[11px] font-bold text-emerald-700 mb-2"><i class="fa-solid fa-wallet mr-1"></i>Monthly care est. ${escapeHTML(getBreedCareGuide(pet)?.monthly.total || '₹5,000–₹9,000')}</p>` : ''}
+                            <div class="flex flex-wrap gap-1.5 mb-3">
+                                ${badgesHTML}
+                            </div>
+                            <p class="text-sm text-slate-600 line-clamp-2 leading-relaxed font-medium">${displayDescription}</p>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
+                            <button onclick="openDetailsModal(${petIdArg})" class="flex-1 bg-rose-50 hover:bg-rose-100 text-brand font-bold py-3 rounded-xl text-xs sm:text-sm transition-all duration-200 border border-rose-100/30 shadow-sm flex justify-center items-center gap-2">
+                                <i class="fa-solid fa-bag-shopping"></i> Buy / Adopt
+                            </button>
+                            <button onclick="toggleCompare(${petIdArg})" class="px-3 py-3 rounded-xl border ${isCompared ? 'bg-indigo-600 border-indigo-600 text-white' : 'bg-white border-slate-200 text-slate-600 hover:bg-indigo-50'} font-bold text-xs transition" title="${isCompared ? 'Remove from comparison' : 'Add to comparison'}"><i class="fa-solid fa-code-compare"></i></button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function toggleCompare(id) {
+            const existingIndex = compareList.findIndex(item => String(item) === String(id));
+            if (existingIndex >= 0) compareList.splice(existingIndex, 1);
+            else if (compareList.length >= 3) {
+                alert('Pet Compare Studio supports up to three companions at a time. Remove one to add another.');
+                return;
+            } else compareList.push(id);
+            updateCompareCount();
+            searchPets();
+        }
+
+        function updateCompareCount() {
+            const count = document.getElementById('compareCount');
+            if (count) count.textContent = compareList.length;
+            if (document.getElementById('compareModal')?.classList.contains('flex')) renderCompare();
+        }
+
+        function openCompareModal() {
+            renderCompare();
+            openModal('compareModal');
+        }
+
+        function renderCompare() {
+            const target = document.getElementById('compareContent');
+            const compared = compareList.map(id => pets.find(pet => String(pet.id) === String(id))).filter(Boolean);
+            if (!compared.length) {
+                target.innerHTML = '<div class="rounded-2xl bg-slate-50 p-10 text-center text-sm font-semibold text-slate-500">Choose the compare icon on up to three pet cards to build your shortlist.</div>';
+                return;
+            }
+            const rows = [
+                ['Category', pet => pet.category], ['Breed', pet => pet.breed], ['Age', pet => pet.age], ['Sex', pet => formatSex(pet.sex)],
+                ['Food', pet => pet.food || categoryFoodGuides[pet.category] || 'Ask the caregiver for current food details'],
+                ['Estimated monthly dog care', pet => getBreedCareGuide(pet)?.monthly.total || (pet.category === 'puppy' ? '₹5,000–₹9,000*' : 'Not shown')],
+                ['Price', pet => pet.price], ['Location', pet => pet.location],
+                ['Trust score', pet => `${pet.trustScore || 0}/100`],
+                ['Safety status', pet => pet.requiresReview ? 'Needs manual review' : 'Demo listing'],
+                ['Demand signal', pet => pet.highDemand ? 'Trending sample signal' : 'No trend flag']
+            ];
+            target.innerHTML = `<table class="min-w-full border-separate border-spacing-0 text-left text-sm">
+                <thead><tr><th class="sticky left-0 bg-white p-3 text-xs uppercase tracking-wider text-slate-400">Profile</th>${compared.map(pet => `<th class="min-w-44 border-b border-slate-100 p-3 align-top"><img src="${escapeHTML(safeImageSource(pet.images?.[0]))}" alt="" class="mb-3 h-24 w-full rounded-xl bg-slate-100 object-cover"><strong class="text-slate-900">${escapeHTML(pet.name)}</strong><button onclick="toggleCompare(${escapeHTML(JSON.stringify(pet.id))})" class="ml-2 text-slate-400 hover:text-rose-500" title="Remove"><i class="fa-solid fa-xmark"></i></button></th>`).join('')}</tr></thead>
+                <tbody>${rows.map(([label, getter]) => `<tr><th class="sticky left-0 border-b border-slate-100 bg-white p-3 text-xs font-bold text-slate-500">${label}</th>${compared.map(pet => `<td class="border-b border-slate-100 p-3 font-semibold text-slate-800">${escapeHTML(getter(pet))}</td>`).join('')}</tr>`).join('')}</tbody>
+            </table>${compared.length < 2 ? '<p class="mt-3 text-xs text-slate-500">Add another companion to compare them side by side.</p>' : ''}`;
+        }
+
+        // Photo matching uses actual candidate photos through the Python CLIP vision model.
+        function triggerImageSearch() {
+            document.getElementById('searchImageInput').click();
+        }
+
+        function previewSearchImage(input) {
+            const file = input.files && input.files[0];
+            if (!file) return;
+            if (!file.type.startsWith('image/')) {
+                document.getElementById('imageSearchStatus').textContent = 'Choose an image file to start visual search.';
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                selectedSearchImageDataUrl = e.target.result;
+                selectedSearchImageFile = file;
+                const preview = document.getElementById('searchImagePreview');
+                preview.src = selectedSearchImageDataUrl;
+                preview.classList.remove('hidden');
+                document.getElementById('imageSearchPanel').classList.remove('hidden');
+                document.getElementById('imageSearchStatus').textContent = `${file.name} is ready. CLIP will compare it with available listing photos.`;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function clearImageSearch() {
+            selectedSearchImageDataUrl = null;
+            selectedSearchImageFile = null;
+            visualSearchResults = null;
+            visualSearchScores = {};
+            document.getElementById('searchImageInput').value = '';
+            document.getElementById('searchImagePreview').src = '';
+            document.getElementById('searchImagePreview').classList.add('hidden');
+            document.getElementById('imageSearchPanel').classList.add('hidden');
+            searchPets();
+        }
+
+        function getCompressedPhoto(source) {
+            return new Promise(resolve => {
+                const image = new Image();
+                if (!String(source).startsWith('data:')) image.crossOrigin = 'anonymous';
+                image.onload = function() {
+                    try {
+                        const canvas = document.createElement('canvas');
+                        const scale = Math.min(1, 224 / Math.max(image.naturalWidth, image.naturalHeight));
+                        canvas.width = Math.max(1, Math.round(image.naturalWidth * scale));
+                        canvas.height = Math.max(1, Math.round(image.naturalHeight * scale));
+                        const context = canvas.getContext('2d');
+                        context.drawImage(image, 0, 0, canvas.width, canvas.height);
+                        canvas.toBlob(blob => resolve(blob || null), 'image/jpeg', 0.82);
+                    } catch (error) { resolve(null); }
+                };
+                image.onerror = function() { resolve(null); };
+                image.src = safeImageSource(source);
+            });
+        }
+
+        async function runImageSearch() {
+            if (!selectedSearchImageDataUrl) {
+                triggerImageSearch();
+                return;
+            }
+            const button = document.getElementById('runImageSearchButton');
+            const status = document.getElementById('imageSearchStatus');
+            button.disabled = true;
+            button.textContent = 'Analyzing…';
+            try {
+                status.textContent = 'Preparing listing photos for CLIP image matching…';
+                const form = new FormData();
+                form.append('image', selectedSearchImageFile, selectedSearchImageFile.name || 'search.jpg');
+                const candidates = [];
+                for (const pet of pets.slice(0, 100)) {
+                    const photo = await getCompressedPhoto(pet.images?.[0]);
+                    if (!photo) continue;
+                    candidates.push({ id: pet.id, name: pet.name, breed: pet.breed, category: pet.category });
+                    form.append('candidate_images', photo, `pet-${pet.id}.jpg`);
+                }
+                if (!candidates.length) throw new Error('No listing photos could be read. Check that the listing image URLs allow access from this page.');
+                form.append('candidates_json', JSON.stringify(candidates));
+                const response = await fetch(`${API_BASE_URL}/api/vision/clip-search`, { method: 'POST', body: form });
+                const data = await response.json().catch(() => ({}));
+                if (!response.ok) throw new Error(data.detail || 'The CLIP image search service is unavailable.');
+                const ranked = (data.results || []).map(result => ({
+                    pet: pets.find(pet => String(pet.id) === String(result.id)),
+                    match: Math.round(result.score)
+                })).filter(result => result.pet);
+                visualSearchResults = ranked.map(item => item.pet);
+                visualSearchScores = Object.fromEntries(ranked.map(item => [item.pet.id, item.match]));
+                searchPets();
+                const detected = data.detected_category ? ` Detected: ${data.detected_category}.` : '';
+                status.textContent = ranked.length
+                    ? `Showing ${ranked.length} close CLIP photo matches.${detected}`
+                    : `No close photo matches were found.${detected} Unrelated pets are hidden.`;
+                button.textContent = 'Search again';
+            } catch (error) {
+                visualSearchResults = [];
+                visualSearchScores = {};
+                searchPets();
+                status.textContent = `${error.message || 'CLIP image search is offline.'} Start the Python API and install backend/requirements-clip.txt.`;
+                button.textContent = 'Try again';
+            } finally {
+                button.disabled = false;
+            }
+        }
+
+        function searchPets() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const source = visualSearchResults || pets;
+            const filtered = source.filter(p => (currentFilter === 'all' || p.category === currentFilter) && (
+                (currentSexFilter === 'all' || String(p.sex || 'unknown').toLowerCase() === currentSexFilter) && (
+                p.name.toLowerCase().includes(query) || 
+                p.breed.toLowerCase().includes(query) || 
+                String(p.food || '').toLowerCase().includes(query) ||
+                p.location.toLowerCase().includes(query))
+            ));
+            renderPets(filtered);
+        }
+
+        function toggleWishlist(id) {
+            const index = wishlist.indexOf(id);
+            const rating = index > -1 ? 0 : 4;
+            if (index > -1) { wishlist.splice(index, 1); } else { wishlist.push(id); }
+            recordInteraction(id, rating);
+            document.getElementById('wishlistCount').innerText = wishlist.length;
+            document.getElementById('drawerCount').innerText = wishlist.length;
+            searchPets();
+            updateWishlistDrawer();
+        }
+
+        function getRecommendationVisitorId() {
+            try {
+                let visitorId = localStorage.getItem('petFurEverVisitorId');
+                if (!visitorId) {
+                    visitorId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : `visitor-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+                    localStorage.setItem('petFurEverVisitorId', visitorId);
+                }
+                return visitorId;
+            } catch (error) { return 'guest-demo'; }
+        }
+
+        async function recordInteraction(itemId, rating) {
+            try {
+                await fetch(`${API_BASE_URL}/api/interactions`, {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ user_id: getRecommendationVisitorId(), item_id: String(itemId), rating })
+                });
+            } catch (error) { /* Feedback is stored when the Python API is online. */ }
+        }
+
+        async function loadBackendListings() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/listings`);
+                if (!response.ok) return;
+                const data = await response.json();
+                const restored = (data.listings || []).filter(item => !pets.some(pet => String(pet.id) === `server-${item.id}`)).map(item => {
+                    const images = (item.images || []).map(source => source.startsWith('/') ? `${API_BASE_URL}${source}` : source);
+                    return {
+                        id: `server-${item.id}`, name: item.name, category: item.category, breed: item.breed,
+                        age: item.age, sex: item.sex || 'unknown', food: item.food || '', breedDetails: item.breed_details || '', price: item.price, location: item.location, desc: item.description,
+                        images: images.length ? images : ['https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=80'],
+                        highDemand: false, trustScore: item.trust_score, riskScore: item.risk_score,
+                        requiresReview: item.requires_review
+                    };
+                });
+                if (restored.length) {
+                    pets.unshift(...restored);
+                    searchPets();
+                    renderDemandForecast();
+                }
+            } catch (error) { /* The sample catalog remains available without the backend. */ }
+        }
+
+        function updateWishlistDrawer() {
+            const container = document.getElementById('wishlistContainer');
+            container.innerHTML = '';
+            if (wishlist.length === 0) {
+                container.innerHTML = `<div class="text-center text-slate-400 py-16 font-medium text-sm"><i class="fa-regular fa-heart text-3xl mb-2 block text-slate-300"></i> No liked companions yet. Give some hearts!</div>`;
+                return;
+            }
+            wishlist.forEach(id => {
+                const pet = pets.find(p => p.id === id);
+                if (!pet) return;
+                const div = document.createElement('div');
+                const petIdArg = escapeHTML(JSON.stringify(pet.id));
+                const displayImage = escapeHTML(safeImageSource(pet.images?.[0]) || 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=80');
+                div.className = "flex items-center gap-4 py-3.5";
+                div.innerHTML = `
+                    <img src="${displayImage}" class="w-16 h-16 rounded-2xl object-cover border border-slate-100 shadow-sm">
+                    <div class="flex-1">
+                        <h4 class="font-extrabold text-slate-900 text-sm font-fun">${escapeHTML(pet.name)}</h4>
+                        <p class="text-xs text-slate-500 font-medium">${escapeHTML(pet.breed)}</p>
+                        <p class="text-xs font-black text-brand mt-1">${escapeHTML(pet.price)}</p>
+                    </div>
+                    <button onclick="toggleWishlist(${petIdArg})" class="text-slate-300 hover:text-rose-500 transition"><i class="fa-solid fa-trash-can"></i></button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function toggleWishlistDrawer() {
+            document.getElementById('wishlistDrawer').classList.toggle('translate-x-full');
+        }
+
+        function filterCategory(cat) {
+            currentFilter = cat;
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.className = "cat-btn px-5 py-2.5 rounded-xl text-sm font-bold text-slate-600 hover:text-indigo-600 transition duration-300";
+            });
+            const activeButton = Array.from(document.querySelectorAll('.cat-btn')).find(btn => btn.getAttribute('onclick') === `filterCategory('${cat}')`);
+            if (activeButton) activeButton.className = "cat-btn px-5 py-2.5 rounded-xl text-sm font-bold bg-white text-indigo-600 shadow-sm transition duration-300";
+            searchPets();
+        }
+
+        function filterSex(sex) {
+            currentSexFilter = sex;
+            document.querySelectorAll('.sex-btn').forEach(button => {
+                const active = button.dataset.sex === sex;
+                button.className = `sex-btn rounded-full px-4 py-2 text-xs font-bold border ${active ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-slate-600 border-slate-200 hover:border-indigo-300'}`;
+            });
+            searchPets();
+        }
+
+        function previewUploadImage(input) {
+            if (input.files && input.files[0]) {
+                localUploadedImageFile = input.files[0];
+                const reader = new FileReader();
+                reader.onload = function(e) { localUploadedImageBase64 = e.target.result; };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        
+        function cancelSell() {
+            document.getElementById('sellForm').reset();
+            localUploadedImageBase64 = null;
+            localUploadedImageFile = null;
+            document.getElementById('listingRiskResult').classList.add('hidden');
+            closeModal('sellModal');
+        }
+
+        function assessListingRisk() {
+            const description = document.getElementById('sellDesc').value.trim();
+            const priceText = document.getElementById('sellPrice').value.trim();
+            const price = Number(priceText.replace(/[^0-9.]/g, ''));
+            const imageLink = document.getElementById('sellImgLink').value.trim();
+            const hasPhoto = Boolean(localUploadedImageBase64 || imageLink);
+            const signals = [];
+            let risk = 0;
+            if (description.length < 45) { risk += 20; signals.push('Short description'); }
+            if (/wire money|gift card|crypto|deposit first|pay immediately|urgent sale/i.test(description)) { risk += 35; signals.push('High-pressure or unusual payment wording'); }
+            if (!hasPhoto) { risk += 15; signals.push('No seller photo attached'); }
+            if (!Number.isFinite(price) || price === 0) { risk += 15; signals.push('Price needs clarification'); }
+            else if (price < 500 || price > 200000) { risk += 10; signals.push('Price is outside the broad review range'); }
+            if (!/vaccin|vet|health|deworm|medical/i.test(description)) { risk += 10; signals.push('No health-care details mentioned'); }
+            risk = Math.min(100, risk);
+            return { risk, signals };
+        }
+
+        async function previewListingRisk() {
+            let result = assessListingRisk();
+            let method = 'browser rule preview';
+            try {
+                const extraPhotoCount = document.getElementById('sellImgExtra').value.split(',').map(value => value.trim()).filter(Boolean).length;
+                const response = await fetch(`${API_BASE_URL}/api/fake-listings/score`, {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: document.getElementById('sellName').value,
+                        category: document.getElementById('sellCategory').value,
+                        breed: document.getElementById('sellBreed').value,
+                        age: document.getElementById('sellAge').value,
+                        price: document.getElementById('sellPrice').value,
+                        description: document.getElementById('sellDesc').value,
+                        photo_count: (localUploadedImageFile || document.getElementById('sellImgLink').value.trim() ? 1 : 0) + extraPhotoCount
+                    })
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    result = { risk: data.risk_score, signals: data.signals || [], requiresReview: data.requires_review };
+                    method = data.method;
+                }
+            } catch (error) { /* Continue with the browser-side check if the API is offline. */ }
+            const panel = document.getElementById('listingRiskResult');
+            const highRisk = result.risk >= 50;
+            panel.className = `rounded-xl border p-3 text-xs ${highRisk ? 'border-amber-200 bg-amber-50 text-amber-900' : 'border-emerald-200 bg-emerald-50 text-emerald-900'}`;
+            panel.innerHTML = `<strong>Listing risk score: ${result.risk}/100</strong><br>${highRisk ? 'Flagged for manual review.' : 'No strong warning signals found.'}<br><span class="opacity-80">Signals: ${result.signals.length ? result.signals.join(' • ') : 'No basic warning signals'} · ${method}</span>`;
+            panel.classList.remove('hidden');
+            return result;
+        }
+
+        async function handleSellSubmission(e) {
+            e.preventDefault();
+            const riskAssessment = await previewListingRisk();
+            const name = document.getElementById('sellName').value;
+            const category = document.getElementById('sellCategory').value;
+            const breed = document.getElementById('sellBreed').value;
+            const age = document.getElementById('sellAge').value;
+            const sex = document.getElementById('sellSex').value;
+            const food = document.getElementById('sellFood').value.trim();
+            const breedDetails = document.getElementById('sellBreedDetails').value.trim();
+            const price = document.getElementById('sellPrice').value;
+            const linkInput = document.getElementById('sellImgLink').value;
+            const extraImgsValue = document.getElementById('sellImgExtra').value;
+            const desc = document.getElementById('sellDesc').value;
+
+            let trustScore = 60;
+            try {
+                const trustResponse = await fetch(`${API_BASE_URL}/api/trust/score`, {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        student_email_verified: false,
+                        identity_verified: false,
+                        phone_verified: false,
+                        completed_transactions: 0,
+                        response_rate: 0,
+                        reports: 0,
+                        listing_complete: Boolean(name && category && breed && age && price && desc),
+                        health_documents: /vaccin|vet|health|deworm|medical/i.test(desc)
+                    })
+                });
+                if (trustResponse.ok) trustScore = (await trustResponse.json()).trust_score;
+            } catch (error) { /* Use a neutral demo score while the backend is offline. */ }
+
+            let mainImage = "https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=80";
+            if (localUploadedImageBase64) { mainImage = localUploadedImageBase64; } else if (linkInput) { mainImage = linkInput; }
+
+            let imageList = [mainImage];
+            if (extraImgsValue) {
+                const arr = extraImgsValue.split(',').map(s => s.trim()).filter(Boolean);
+                imageList = imageList.concat(arr);
+            }
+
+            let backendImages = linkInput ? [linkInput] : [];
+            if (extraImgsValue) backendImages.push(...extraImgsValue.split(',').map(value => value.trim()).filter(Boolean));
+            if (localUploadedImageFile) {
+                try {
+                    const upload = new FormData();
+                    upload.append('image', localUploadedImageFile);
+                    const uploadResponse = await fetch(`${API_BASE_URL}/api/media/upload`, { method: 'POST', body: upload });
+                    if (uploadResponse.ok) {
+                        const uploaded = await uploadResponse.json();
+                        mainImage = `${API_BASE_URL}${uploaded.url}`;
+                        imageList[0] = mainImage;
+                        backendImages.unshift(mainImage);
+                    }
+                } catch (error) { /* Keep the selected image as a browser-local preview. */ }
+            }
+
+            let backendListingId = null;
+            try {
+                const saveResponse = await fetch(`${API_BASE_URL}/api/listings`, {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name, category, breed, age, sex, food, breed_details: breedDetails, price, location: 'Local Listing', description: desc,
+                        images: backendImages, trust_score: trustScore, risk_score: riskAssessment.risk,
+                        requires_review: riskAssessment.risk >= 50
+                    })
+                });
+                if (saveResponse.ok) backendListingId = (await saveResponse.json()).id;
+            } catch (error) { /* Keep the listing in the browser catalog when the API is offline. */ }
+
+            const newPet = {
+                id: backendListingId ? `server-${backendListingId}` : (pets.length + 1), name, category, breed, age, sex, food, breedDetails, price, location: "Local Listing", desc, images: imageList,
+                highDemand: false, trustScore, riskScore: riskAssessment.risk, requiresReview: riskAssessment.risk >= 50
+            };
+
+            pets.unshift(newPet);
+            searchPets();
+            renderDemandForecast();
+            closeModal('sellModal');
+            alert(`Listing Created! ${name} has a ${riskAssessment.risk}/100 risk score and ${trustScore}/100 trust score.${riskAssessment.risk >= 50 ? ' It is flagged for manual review.' : ''}${backendListingId ? ' Saved to the Python backend.' : ' The Python API is offline, so it is saved in this browser session only.'}`);
+            e.target.reset();
+            localUploadedImageBase64 = null;
+            localUploadedImageFile = null;
+        }
+
+        function openDetailsModal(id) {
+            const pet = pets.find(p => p.id === id);
+            if (!pet) return;
+            activeDetailsImages = (pet.images || []).map(safeImageSource).filter(Boolean);
+            if (!activeDetailsImages.length) activeDetailsImages = ['https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=80'];
+            const petIdArg = escapeHTML(JSON.stringify(pet.id));
+            const displayName = escapeHTML(pet.name);
+            const displayBreed = escapeHTML(pet.breed);
+            const displayAge = escapeHTML(pet.age);
+            const displaySex = escapeHTML(formatSex(pet.sex));
+            const displayPrice = escapeHTML(pet.price);
+            const displayDescription = escapeHTML(pet.desc);
+            const breedGuide = getBreedCareGuide(pet);
+            const breedDetails = escapeHTML(pet.breedDetails || breedGuide?.details || `Ask the caregiver for verified ${pet.breed} details, health records, and temperament notes.`);
+            const foodDetails = escapeHTML(pet.food || categoryFoodGuides[pet.category] || 'Ask the caregiver what food the pet currently eats.');
+            const foodGuide = escapeHTML(breedGuide?.food || categoryFoodGuides[pet.category] || 'Ask a veterinarian for a diet suited to this pet.');
+            const dogCost = pet.category === 'puppy' ? (breedGuide?.monthly || { total: '₹5,000–₹9,000', food: '₹2,500–₹4,500', vet: '₹1,000–₹2,000', grooming: '₹1,500–₹2,500' }) : null;
+
+            // Determine Trust Score Color
+            let trustColor = pet.trustScore > 90 ? 'text-emerald-600 bg-emerald-50' : 'text-orange-600 bg-orange-50';
+
+            let extraCarouselGallery = `
+                <div class="relative h-72 sm:h-80 bg-slate-100 overflow-hidden" id="carouselContainer">
+                    <img id="mainCarouselImg" src="${escapeHTML(activeDetailsImages[0])}" class="w-full h-full object-cover">
+                    <div class="absolute bottom-4 left-4 bg-slate-900/70 backdrop-blur px-3 py-1.5 rounded-full text-xs font-bold text-white shadow flex items-center gap-1.5">
+                        <i class="fa-solid fa-camera animate-bounce-animal text-brand-light"></i> 1 of ${activeDetailsImages.length} Photos
+                    </div>
+                </div>
+                <div class="flex gap-2 p-4 bg-slate-50 overflow-x-auto border-b border-rose-100/30">
+            `;
+            activeDetailsImages.forEach((img, index) => {
+                extraCarouselGallery += `
+                    <button onclick="setCarouselImage(${index})" class="rounded-xl border-2 border-transparent hover:border-brand"><img src="${escapeHTML(img)}" alt="${displayName} photo ${index + 1}" class="w-16 h-16 rounded-xl object-cover"></button>
+                `;
+            });
+            extraCarouselGallery += `</div>
+                <div class="p-6 sm:p-8 space-y-4">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-2xl font-black text-slate-900 font-fun flex items-center gap-2">${displayName}</h3>
+                            <p class="text-sm font-extrabold text-brand mt-1 flex items-center gap-1"><i class="fa-solid fa-paw text-brand/70"></i> ${displayBreed} • ${displayAge} • ${displaySex}</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-2xl font-black text-slate-900 bg-rose-50 border border-rose-100 px-4 py-1.5 rounded-2xl font-fun block">${displayPrice}</span>
+                            <span class="mt-2 inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[10px] font-bold border border-slate-200 ${trustColor}" title="Sample Student and Seller Trust Score preview; production scoring needs verified profile signals and a connected model">
+                                <i class="fa-solid fa-user-check"></i> Trust Score: ${pet.trustScore}/100
+                            </span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed font-medium bg-slate-50 p-4 rounded-2xl border border-slate-100">${displayDescription}</p>
+                    <section class="rounded-2xl border border-indigo-100 bg-indigo-50/60 p-4">
+                        <h4 class="font-extrabold text-slate-900"><i class="fa-solid fa-dna mr-2 text-indigo-600"></i>About this breed</h4>
+                        <p class="mt-1 text-sm leading-relaxed text-slate-600">${breedDetails}</p>
+                        ${breedGuide ? `<p class="mt-2 text-xs font-semibold text-slate-500">Typical adult size: ${escapeHTML(breedGuide.sizeLabel)}</p>` : ''}
+                    </section>
+                    <section class="rounded-2xl border border-amber-100 bg-amber-50/60 p-4">
+                        <h4 class="font-extrabold text-slate-900"><i class="fa-solid fa-bowl-food mr-2 text-amber-600"></i>Food and feeding</h4>
+                        <p class="mt-1 text-sm text-slate-600"><strong>Food shared for this pet:</strong> ${foodDetails}</p>
+                        <p class="mt-2 text-xs leading-relaxed text-slate-500"><strong>Care guide:</strong> ${foodGuide} Feeding amounts depend on age, weight, health, and activity; confirm with a veterinarian.</p>
+                    </section>
+                    ${dogCost ? `<section class="rounded-2xl border border-emerald-100 bg-emerald-50/70 p-4">
+                        <div class="flex flex-wrap items-center justify-between gap-2"><h4 class="font-extrabold text-slate-900"><i class="fa-solid fa-wallet mr-2 text-emerald-700"></i>Estimated monthly dog care</h4><strong class="text-emerald-800">${escapeHTML(dogCost.total)}</strong></div>
+                        <div class="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs text-slate-600"><span class="rounded-xl bg-white/80 p-2">Food: ${escapeHTML(dogCost.food)}</span><span class="rounded-xl bg-white/80 p-2">Routine vet fund: ${escapeHTML(dogCost.vet)}</span><span class="rounded-xl bg-white/80 p-2">Grooming & supplies: ${escapeHTML(dogCost.grooming)}</span></div>
+                        <p class="mt-2 text-[10px] leading-relaxed text-slate-500">Indicative urban India estimate; city, dog size, food choice, health, and grooming needs change the total. Emergency care and one-time setup costs are not included. <a class="underline font-semibold" href="https://www.livemint.com/money/personal-finance/pet-parenthood-expenses-vet-visits-health-insurance-premium-food-grooming-supplements/amp-11765285042084.html" target="_blank" rel="noopener noreferrer">Cost reference</a>.</p>
+                    </section>` : ''}
+                    <button onclick="closeModal('detailsModal'); createWelcomePlan(${petIdArg})" class="w-full rounded-2xl border border-indigo-200 bg-indigo-50 px-4 py-3 text-sm font-extrabold text-indigo-700 hover:bg-indigo-100 transition"><i class="fa-solid fa-calendar-week mr-2"></i>Build ${displayName}'s 7-Day Welcome Plan</button>
+                    <div class="pt-4 flex flex-col sm:flex-row gap-4">
+                        <button onclick="recordInteraction('${pet.id}', 5); closeModal('detailsModal'); openModal('statusModal');" class="flex-1 bg-gradient-to-r from-brand to-orange-500 hover:from-brand-dark hover:to-orange-600 text-white font-extrabold py-4 rounded-2xl shadow-xl shadow-brand/25 transition mag-button text-center">
+                            <i class="fa-solid fa-bag-shopping"></i> Buy / Adopt Now
+                        </button>
+                        <a href="https://wa.me/919177578339?text=${encodeURIComponent(`Hi, I want to buy/adopt ${pet.name} (${pet.breed}).`)}" target="_blank" rel="noopener noreferrer" class="bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-4 rounded-2xl font-extrabold transition duration-200 flex items-center justify-center gap-2 shadow-lg hover:shadow-emerald-500/35">
+                            <i class="fa-brands fa-whatsapp text-xl"></i> WhatsApp Seller
+                        </a>
+                    </div>
+                </div>`;
+            document.getElementById('modalContent').innerHTML = extraCarouselGallery;
+            document.getElementById('detailsModal').classList.remove('hidden');
+            document.getElementById('detailsModal').classList.add('flex');
+        }
+
+        function setCarouselImage(index) {
+            const image = activeDetailsImages[index];
+            if (image) document.getElementById('mainCarouselImg').src = image;
+        }
+
+        function renderDemandForecast() {
+            const container = document.getElementById('demandForecastSummary');
+            if (!container) return;
+            const categories = [
+                { key: 'puppy', label: 'Puppies', icon: 'fa-dog', color: 'text-orange-600 bg-orange-100' },
+                { key: 'kitten', label: 'Kittens', icon: 'fa-cat', color: 'text-purple-600 bg-purple-100' },
+                { key: 'rabbit', label: 'Rabbits', icon: 'fa-carrot', color: 'text-emerald-600 bg-emerald-100' },
+                { key: 'bird', label: 'Birds', icon: 'fa-dove', color: 'text-sky-600 bg-sky-100' }
+            ];
+            container.innerHTML = categories.map(category => {
+                const listings = pets.filter(pet => pet.category === category.key);
+                const trending = listings.filter(pet => pet.highDemand).length;
+                return `<div class="rounded-2xl border border-white bg-white/80 p-3 shadow-sm">
+                    <div class="flex items-center gap-2"><span class="w-8 h-8 rounded-xl ${category.color} flex items-center justify-center"><i class="fa-solid ${category.icon}"></i></span><span class="text-xs font-bold text-slate-700">${category.label}</span></div>
+                    <p class="mt-2 text-lg font-black text-slate-900">${trending} <span class="text-[10px] font-bold text-slate-500">of ${listings.length}</span></p>
+                    <p class="text-[9px] text-slate-500">sample trend signals</p>
+                </div>`;
+            }).join('');
+        }
+
+        async function runDemandForecast() {
+            const resultPanel = document.getElementById('demandForecastResult');
+            const history = document.getElementById('demandHistoryInput').value.split(/\r?\n/).map(line => {
+                const match = line.trim().match(/^(\d{4}-\d{2})\s*,\s*(\d+(?:\.\d+)?)$/);
+                return match ? { month: match[1], count: Number(match[2]) } : null;
+            }).filter(Boolean);
+            const totalRows = document.getElementById('demandHistoryInput').value.split(/\r?\n/).map(line => line.trim()).filter(Boolean).length;
+            resultPanel.classList.remove('hidden');
+            if (!history.length || history.length !== totalRows) {
+                resultPanel.textContent = 'Enter monthly rows in YYYY-MM,count format, for example 2025-01,12.';
+                return;
+            }
+            resultPanel.textContent = 'Sending demand history to the Python Random Forest forecast endpoint…';
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/demand/forecast`, {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ category: document.getElementById('demandCategory').value, history, horizon: 3 })
+                });
+                const data = await response.json();
+                if (!response.ok) throw new Error(data.detail || 'Forecast request failed.');
+                const points = data.forecasts.map(item => `<span class="inline-flex flex-col rounded-xl bg-indigo-50 px-3 py-2"><strong>${item.month}</strong><span>${item.predicted_demand} listings</span></span>`).join('');
+                resultPanel.innerHTML = `<strong class="text-slate-800">${data.category} demand forecast</strong><div class="flex flex-wrap gap-2 mt-2">${points}</div><p class="mt-2 text-xs text-slate-500">${data.method}</p>`;
+            } catch (error) {
+                resultPanel.textContent = `${error.message || 'Python API is offline.'} Start the backend to run the forecast.`;
+            }
+        }
+
+        async function evaluateReadiness() {
+            const homeType = document.getElementById('readinessHome').value;
+            const dailyTime = document.getElementById('readinessTime').value;
+            const monthlyBudget = document.getElementById('readinessBudget').value;
+            const profile = {
+                home_type: homeType,
+                daily_time: dailyTime,
+                monthly_budget: monthlyBudget,
+                household_agrees: document.getElementById('readinessHousehold').checked,
+                landlord_approval: document.getElementById('readinessLandlord').checked,
+                emergency_fund: document.getElementById('readinessEmergency').checked,
+                primary_caregiver: document.getElementById('readinessCaregiver').checked,
+                travel_care_plan: document.getElementById('readinessTravel').checked
+            };
+            let result;
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/adoption/readiness`, {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(profile)
+                });
+                if (!response.ok) throw new Error('Readiness endpoint unavailable');
+                result = await response.json();
+            } catch (error) {
+                let score = profile.household_agrees ? 20 : 0;
+                score += dailyTime === '2_plus' ? 18 : dailyTime === '1_2' ? 12 : 0;
+                score += monthlyBudget === 'over_6000' ? 15 : monthlyBudget === '3000_6000' ? 10 : 0;
+                score += homeType !== 'renter' || profile.landlord_approval ? 15 : 0;
+                score += profile.emergency_fund ? 12 : 0;
+                score += profile.primary_caregiver ? 10 : 0;
+                score += profile.travel_care_plan ? 10 : 0;
+                result = {
+                    score,
+                    status: score >= 80 ? 'Ready to plan visits' : score >= 60 ? 'Good progress' : 'Build your care plan',
+                    next_steps: [
+                        !profile.household_agrees && 'Talk through the daily care plan with everyone at home.',
+                        homeType === 'renter' && !profile.landlord_approval && 'Confirm your housing rules allow the pet you have in mind.',
+                        dailyTime === 'under_1' && 'Set aside predictable daily time for care, play, and settling in.',
+                        monthlyBudget === 'under_3000' && 'Review recurring costs and leave room for unexpected needs.',
+                        !profile.emergency_fund && 'Build an emergency fund for unexpected expenses.',
+                        !profile.primary_caregiver && 'Choose a primary caregiver and agree on backup coverage.',
+                        !profile.travel_care_plan && 'Make a plan for care during travel or busy weeks.'
+                    ].filter(Boolean)
+                };
+            }
+            document.getElementById('readinessScore').textContent = `${result.score}`;
+            document.getElementById('readinessStatus').textContent = result.status;
+            document.getElementById('readinessHint').textContent = result.score >= 80 ? 'You have a thoughtful foundation for next steps.' : 'A few small preparations can make the transition smoother.';
+            const nextSteps = document.getElementById('readinessNextSteps');
+            if (result.next_steps.length) {
+                nextSteps.innerHTML = `<p class="text-[10px] font-extrabold uppercase tracking-wider text-cyan-200">Your next steps</p>${result.next_steps.map(step => `<div class="flex items-start gap-2 text-xs text-slate-300"><i class="fa-solid fa-arrow-right-long mt-0.5 text-cyan-300"></i><span>${escapeHTML(step)}</span></div>`).join('')}`;
+                nextSteps.classList.remove('hidden');
+            } else {
+                nextSteps.innerHTML = '<p class="text-xs text-emerald-200">Your core preparation checklist is complete. Start meeting companions and keep planning together.</p>';
+                nextSteps.classList.remove('hidden');
+            }
+        }
+
+        let activeWelcomePetId = null;
+
+        function makeLocalWelcomePlan(pet) {
+            const base = [
+                ['Settle in', ['Prepare one quiet base area.', 'Keep the first day low-key and let the pet approach at its own pace.']],
+                ['Build a routine', ['Set consistent times for meals and attention.', 'Keep water and core supplies easy to reach.']],
+                ['Explore safely', ['Open one additional safe area at a time.', 'Notice where the pet prefers to rest and retreat.']],
+                ['Meet the household', ['Introduce household members one at a time.', 'Keep interactions calm and brief.']],
+                ['Add enrichment', ['Offer an activity suited to the pet.', 'Make time for positive one-to-one interaction.']],
+                ['Review the setup', ['Check access to resting and care areas.', 'Adjust the home setup based on what you have observed.']],
+                ['Keep what works', ['Review the first week’s routine.', 'List questions for the adoption organization or veterinarian.']]
+            ];
+            const suppliesByCategory = {
+                puppy: ['Leash and harness', 'Safe resting area', 'Chew-safe enrichment', 'Waste bags'],
+                kitten: ['Litter area', 'Scratching surface', 'Carrier', 'Window and cable safety check'],
+                rabbit: ['Secure exercise pen', 'Hiding place', 'Non-slip floor area', 'Chew-safe enrichment'],
+                bird: ['Secure enclosure', 'Perches', 'Quiet resting area', 'Safe enrichment']
+            };
+            const focusByCategory = {
+                puppy: 'short, calm introductions and a predictable outdoor routine',
+                kitten: 'a quiet base room, safe hiding spots, and gradual exploration',
+                rabbit: 'a secure floor-level base area and supervised exploration',
+                bird: 'a calm enclosure location and unhurried time to settle'
+            };
+            return {
+                pet_name: pet.name, category: pet.category, first_week_focus: focusByCategory[pet.category],
+                setup_checklist: suppliesByCategory[pet.category],
+                days: base.map(([title, tasks], index) => ({ day: index + 1, title, tasks }))
+            };
+        }
+
+        async function createWelcomePlan(petId) {
+            const pet = pets.find(item => String(item.id) === String(petId));
+            if (!pet) return;
+            activeWelcomePetId = String(pet.id);
+            let plan;
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/adoption/welcome-plan`, {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ pet_name: pet.name, category: pet.category, age: pet.age })
+                });
+                if (!response.ok) throw new Error('Welcome planner API unavailable');
+                plan = await response.json();
+            } catch (error) { plan = makeLocalWelcomePlan(pet); }
+            const progressKey = `petFurEverWelcomePlan:${activeWelcomePetId}`;
+            let completed = [];
+            try { completed = JSON.parse(localStorage.getItem(progressKey) || '[]'); } catch (error) { completed = []; }
+            const content = document.getElementById('welcomePlanContent');
+            const totalTasks = plan.days.reduce((sum, day) => sum + day.tasks.length, 0);
+            const checkboxes = [];
+            let taskIndex = 0;
+            const daysHTML = plan.days.map(day => {
+                const tasksHTML = day.tasks.map(task => {
+                    const checked = completed.includes(taskIndex);
+                    const checkbox = `<label class="flex items-start gap-2 rounded-lg bg-white/70 p-2.5 text-xs text-slate-600"><input type="checkbox" onchange="updateWelcomeProgress()" class="welcome-plan-check mt-0.5 accent-indigo-600" data-task-index="${taskIndex}" ${checked ? 'checked' : ''}><span>${escapeHTML(task)}</span></label>`;
+                    taskIndex++;
+                    return checkbox;
+                }).join('');
+                return `<article class="rounded-2xl border border-slate-100 bg-slate-50 p-4"><div class="mb-2 flex items-center gap-2"><span class="flex h-7 w-7 items-center justify-center rounded-full bg-indigo-600 text-xs font-black text-white">${day.day}</span><h4 class="font-extrabold text-slate-800">${escapeHTML(day.title)}</h4></div><div class="space-y-1.5">${tasksHTML}</div></article>`;
+            }).join('');
+            content.innerHTML = `<span class="text-xs font-extrabold uppercase tracking-[0.2em] text-indigo-600">7-Day Welcome Plan</span><h3 class="mt-1 text-2xl font-black text-slate-900 font-fun">A calm start for ${escapeHTML(plan.pet_name)}</h3><p class="mt-2 text-sm text-slate-600">Focus: ${escapeHTML(plan.first_week_focus)}.</p><div class="mt-4 rounded-2xl bg-indigo-50 p-4"><h4 class="text-xs font-extrabold uppercase tracking-wider text-indigo-700">Setup checklist</h4><div class="mt-2 flex flex-wrap gap-2">${plan.setup_checklist.map(item => `<span class="rounded-full border border-indigo-100 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700"><i class="fa-solid fa-check text-emerald-500 mr-1"></i>${escapeHTML(item)}</span>`).join('')}</div></div><div class="mt-5 flex items-center justify-between"><h4 class="font-extrabold text-slate-900">Your first week</h4><span id="welcomeProgressLabel" class="text-xs font-bold text-indigo-600"></span></div><div class="mt-2 h-2 overflow-hidden rounded-full bg-slate-100"><div id="welcomeProgressBar" class="h-full rounded-full bg-gradient-to-r from-cyan-400 to-indigo-600 transition-all"></div></div><div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">${daysHTML}</div><p class="mt-4 text-[10px] text-slate-400">Planning guide only. Adapt the setup to your companion and follow guidance from the adoption organization.</p>`;
+            content.dataset.totalTasks = totalTasks;
+            updateWelcomeProgress();
+            openModal('welcomePlanModal');
+        }
+
+        function updateWelcomeProgress() {
+            const content = document.getElementById('welcomePlanContent');
+            const boxes = Array.from(content.querySelectorAll('.welcome-plan-check'));
+            if (!boxes.length || !activeWelcomePetId) return;
+            const completed = boxes.filter(box => box.checked).map(box => Number(box.dataset.taskIndex));
+            try { localStorage.setItem(`petFurEverWelcomePlan:${activeWelcomePetId}`, JSON.stringify(completed)); } catch (error) { /* Progress remains usable for this session. */ }
+            const total = boxes.length;
+            const percent = Math.round(completed.length / total * 100);
+            document.getElementById('welcomeProgressLabel').textContent = `${completed.length}/${total} steps`;
+            document.getElementById('welcomeProgressBar').style.width = `${percent}%`;
+        }
+
+        // Lifestyle-fit recommendation preview. Collaborative Filtering needs interaction history and a connected model service.
+        async function runAIMatch() {
+            const space = document.getElementById('qSpace').value;
+            const activity = document.getElementById('qActivity').value;
+            const experience = document.getElementById('qExperience').value;
+            const budget = document.getElementById('qBudget').value;
+            const scored = pets.map(pet => {
+                let score = 40;
+                const indoorFriendly = ['kitten', 'rabbit', 'bird'].includes(pet.category);
+                if (space === 'apartment') score += indoorFriendly ? 20 : 5;
+                else score += pet.category === 'puppy' ? 20 : 10;
+                if (activity === 'high') score += pet.category === 'puppy' ? 20 : 10;
+                else score += pet.category === 'kitten' || pet.category === 'rabbit' ? 20 : 12;
+                if (experience === 'experienced') score += pet.category === 'puppy' ? 15 : 10;
+                else score += pet.category === 'kitten' || pet.category === 'rabbit' ? 15 : 8;
+                if (budget === 'low') score += pet.category === 'rabbit' || pet.category === 'bird' ? 15 : 5;
+                return { pet, score: Math.min(100, score) };
+            }).sort((a, b) => b.score - a.score);
+            let matched = scored[0].pet;
+            let fitScore = scored[0].score;
+            let recommendationMethod = 'browser lifestyle-fit rules';
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/recommendations`, {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        user_id: getRecommendationVisitorId(),
+                        preferences: { space, activity, experience, budget },
+                        interactions: [],
+                        candidates: pets.map(pet => ({
+                            id: pet.id, name: pet.name, category: pet.category, breed: pet.breed,
+                            age: pet.age, price: pet.price, images: pet.images,
+                            trust_score: Number(pet.trustScore || 0)
+                        })),
+                        limit: 1
+                    })
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.results && data.results[0]) {
+                        matched = data.results[0].pet;
+                        fitScore = data.results[0].score;
+                        recommendationMethod = data.method;
+                    }
+                }
+            } catch (error) { /* Use local lifestyle-fit ranking when the API is offline. */ }
+            const reasons = [
+                space === 'apartment' ? 'home-space fit' : 'yard-home fit',
+                activity === 'high' ? 'active lifestyle fit' : 'relaxed activity fit',
+                experience === 'experienced' ? 'experienced-owner fit' : 'first-time-owner fit',
+                budget === 'low' ? 'budget preference' : 'flexible budget'
+            ].filter(Boolean).join(', ');
+
+            document.getElementById('quizContainer').classList.add('hidden');
+            document.getElementById('quizResultContainer').classList.remove('hidden');
+            document.getElementById('matchResultCard').innerHTML = `
+                <div class="flex items-center gap-4 bg-white p-4 rounded-2xl border border-indigo-100 shadow-md">
+                    <img src="${matched.images[0]}" class="w-20 h-20 rounded-2xl object-cover border border-slate-100 shadow-sm">
+                    <div>
+                        <h5 class="font-extrabold text-slate-900 text-lg font-fun flex items-center gap-1">${matched.name} <span class="text-[10px] bg-indigo-50 text-indigo-600 px-2 py-0.5 rounded-full font-bold uppercase border border-indigo-200">${matched.category}</span></h5>
+                        <p class="text-xs text-slate-500 font-bold">${matched.breed} • ${matched.age}</p>
+                        <p class="text-xs font-black text-brand mt-1">${matched.price}</p>
+                    </div>
+                </div>
+                <p class="text-xs text-slate-600 mt-3 font-medium bg-indigo-50 border border-indigo-100 p-3.5 rounded-xl"><i class="fa-solid fa-network-wired text-indigo-500 mr-1"></i><strong>${fitScore}/100 lifestyle fit preview</strong> based on ${reasons}. ${recommendationMethod}.</p>
+            `;
+        }
+
+        // Donation Handlers
+        function selectDonation(amount, btnElement) {
+            document.querySelectorAll('.donate-btn').forEach(btn => {
+                btn.classList.remove('bg-rose-100', 'border-rose-300');
+            });
+            btnElement.classList.add('bg-rose-100', 'border-rose-300');
+            document.getElementById('customDonation').value = amount;
+        }
+
+        function processDonation() {
+            const amount = document.getElementById('customDonation').value;
+            if(!amount || amount <= 0) {
+                alert("Please select or enter a valid donation amount.");
+                return;
+            }
+            alert(`Thank you for your generous donation of ₹${amount}! This will directly help our shelter animals.`);
+            document.getElementById('customDonation').value = '';
+            document.querySelectorAll('.donate-btn').forEach(btn => btn.classList.remove('bg-rose-100', 'border-rose-300'));
+            closeModal('donateModal');
+        }
+
+        function calculateCost(type) {
+            const res = document.getElementById('costResult');
+            res.classList.remove('hidden');
+            if(type === 'small') { res.innerHTML = `🌟 <strong>Small Budgets:</strong> Approx ₹2,000/mo. (Food: ₹1,000, Routine vet: ₹600, Toys: ₹400).`; }
+            else if(type === 'medium') { res.innerHTML = `🌟 <strong>Medium Budgets:</strong> Approx ₹4,000/mo. (Kibble: ₹2,200, Checkups: ₹1,000, Materials: ₹800).`; }
+            else { res.innerHTML = `🌟 <strong>Large Budgets:</strong> Approx ₹7,500/mo. (Nutrition: ₹4,500, Supplements: ₹2,000, Care: ₹1,000).`; }
+        }
+
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+            document.getElementById(id).classList.add('flex');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+            document.getElementById(id).classList.remove('flex');
+            if (id === 'matchmakerModal') {
+                setTimeout(() => {
+                    document.getElementById('quizContainer').classList.remove('hidden');
+                    document.getElementById('quizResultContainer').classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        renderPets(pets);
+        renderDemandForecast();
+        checkBackendStatus();
+        loadBackendListings();
+        updateCompareCount();
+    </script>
+</body>
+</html>
